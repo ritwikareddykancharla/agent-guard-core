@@ -1,0 +1,492 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "zone-101",
+      "type": "rectangle",
+      "x": 30,
+      "y": 90,
+      "width": 350,
+      "height": 510,
+      "strokeColor": "#c92a2a",
+      "backgroundColor": "#fff5f5",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 101
+    },
+    {
+      "id": "zone-102",
+      "type": "rectangle",
+      "x": 415,
+      "y": 90,
+      "width": 350,
+      "height": 510,
+      "strokeColor": "#1864ab",
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 102
+    },
+    {
+      "id": "zone-103",
+      "type": "rectangle",
+      "x": 800,
+      "y": 90,
+      "width": 350,
+      "height": 510,
+      "strokeColor": "#5f3dc4",
+      "backgroundColor": "#f3f0ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 103
+    },
+    {
+      "id": "box-104",
+      "type": "rectangle",
+      "x": 55,
+      "y": 140,
+      "width": 300,
+      "height": 78,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#ffc9c9",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 104
+    },
+    {
+      "id": "text-104",
+      "type": "text",
+      "x": 65,
+      "y": 152,
+      "width": 280,
+      "height": 58,
+      "text": "Human Principal & Untrusted Input\nUser Prompt + Retrieved Docs + PII\n(SSN, AWS Key, CC, MRN, Injections)",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 604
+    },
+    {
+      "id": "box-105",
+      "type": "rectangle",
+      "x": 55,
+      "y": 255,
+      "width": 300,
+      "height": 100,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#ffec99",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 105
+    },
+    {
+      "id": "text-105",
+      "type": "text",
+      "x": 65,
+      "y": 267,
+      "width": 280,
+      "height": 80,
+      "text": "Pre-Context PII & Injection Firewall\n\u2022 Tokenize \u2192 <PII:SSN_001>\n\u2022 Block Role-Spoofing & Base64 Attacks\n\u2022 100% Redaction / 0% False Positives",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 605
+    },
+    {
+      "id": "box-106",
+      "type": "rectangle",
+      "x": 55,
+      "y": 390,
+      "width": 300,
+      "height": 170,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 106
+    },
+    {
+      "id": "text-106",
+      "type": "text",
+      "x": 65,
+      "y": 402,
+      "width": 280,
+      "height": 150,
+      "text": "HMAC-SHA256 Capability Token\n\u2022 human_principal_id + agent_id\n\u2022 allowed_tools + resource_arns\n\u2022 Monotonic A2A Scope Attenuation\n\u2022 Sub-Agent Privilege Escalation Block\n\u2022 Max USD Budget Ceiling",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 606
+    },
+    {
+      "id": "box-107",
+      "type": "rectangle",
+      "x": 440,
+      "y": 140,
+      "width": 300,
+      "height": 195,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#d0bfff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 107
+    },
+    {
+      "id": "text-107",
+      "type": "text",
+      "x": 450,
+      "y": 152,
+      "width": 280,
+      "height": 175,
+      "text": "3-Tier Hierarchical Memory MCP\nTier 1: Working Window (Pinned Rules)\nTier 2: Episodic Compacted Summaries\nTier 3: Semantic TF-IDF + Entity Store\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n100% Needle Recall@4 (5.17x Compress)",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 607
+    },
+    {
+      "id": "box-108",
+      "type": "rectangle",
+      "x": 440,
+      "y": 375,
+      "width": 300,
+      "height": 185,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 108
+    },
+    {
+      "id": "text-108",
+      "type": "text",
+      "x": 450,
+      "y": 387,
+      "width": 280,
+      "height": 165,
+      "text": "Multi-Model AI Gateway & Router\n\u2022 Tenant Semantic Cache (84% Hit Rate)\n\u2022 Fast Tier (Nova Micro) vs Reasoning\n\u2022 claude-opus-5-5 / gpt-4o-mini\n\u2022 Token-Bucket Rate Limiter\n\u2022 Runaway Loop & Cost Kill-Switch",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 608
+    },
+    {
+      "id": "box-109",
+      "type": "rectangle",
+      "x": 825,
+      "y": 140,
+      "width": 300,
+      "height": 115,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#ffd8a8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 109
+    },
+    {
+      "id": "text-109",
+      "type": "text",
+      "x": 835,
+      "y": 152,
+      "width": 280,
+      "height": 95,
+      "text": "Just-In-Time (JIT) Approval Gate\n\u2022 High-Risk: PROD_DEPLOY / IAM / WIRE\n\u2022 Suspends \u2192 PENDING_JIT_APPROVAL\n\u2022 Cryptographic Human Sign-Off",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 609
+    },
+    {
+      "id": "box-110",
+      "type": "rectangle",
+      "x": 825,
+      "y": 295,
+      "width": 300,
+      "height": 110,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 110
+    },
+    {
+      "id": "text-110",
+      "type": "text",
+      "x": 835,
+      "y": 307,
+      "width": 280,
+      "height": 90,
+      "text": "Selective Tool PII Re-Hydration\n\u2022 Per-Tool Category Allowlist Check\n\u2022 Re-hydrates <PII:SSN_001> Only for\n  Authorized Downstream APIs",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 610
+    },
+    {
+      "id": "box-111",
+      "type": "rectangle",
+      "x": 825,
+      "y": 445,
+      "width": 300,
+      "height": 115,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#e9ecef",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "seed": 111
+    },
+    {
+      "id": "text-111",
+      "type": "text",
+      "x": 835,
+      "y": 457,
+      "width": 280,
+      "height": 95,
+      "text": "Tamper-Evident SHA-256 Audit Log\n\u2022 Hash-Chained Attribution Ledger\n\u2022 human_actor vs delegated_agent_actor\n\u2022 approver_actor + verify_integrity()",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e",
+      "seed": 611
+    },
+    {
+      "id": "arrow-112",
+      "type": "arrow",
+      "x": 205,
+      "y": 218,
+      "width": 0,
+      "height": 37,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          37
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 112
+    },
+    {
+      "id": "arrow-113",
+      "type": "arrow",
+      "x": 205,
+      "y": 355,
+      "width": 0,
+      "height": 35,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          35
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 113
+    },
+    {
+      "id": "arrow-114",
+      "type": "arrow",
+      "x": 355,
+      "y": 305,
+      "width": 85,
+      "height": 70,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          85,
+          -70
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 114
+    },
+    {
+      "id": "arrow-115",
+      "type": "arrow",
+      "x": 355,
+      "y": 465,
+      "width": 85,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          85,
+          0
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 115
+    },
+    {
+      "id": "arrow-116",
+      "type": "arrow",
+      "x": 590,
+      "y": 335,
+      "width": 0,
+      "height": 40,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 116
+    },
+    {
+      "id": "arrow-117",
+      "type": "arrow",
+      "x": 740,
+      "y": 445,
+      "width": 85,
+      "height": 240,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          85,
+          -240
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 117
+    },
+    {
+      "id": "arrow-118",
+      "type": "arrow",
+      "x": 975,
+      "y": 255,
+      "width": 0,
+      "height": 40,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 118
+    },
+    {
+      "id": "arrow-119",
+      "type": "arrow",
+      "x": 975,
+      "y": 405,
+      "width": 0,
+      "height": 40,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "seed": 119
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}

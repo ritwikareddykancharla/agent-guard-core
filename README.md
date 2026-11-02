@@ -17,43 +17,10 @@
 
 ## System Architecture
 
-```mermaid
-flowchart TD
-    Human["Human Principal (IAM User/Role)"] -->|"1. Issue Root Capability Token (HMAC-SHA256)"| ZT["ZeroTrustPolicyEngine (identity_delegation.py)"]
-    ZT -->|"Root Token (Tools, ARN Globs, Max USD, TTL)"| Orch["Primary Orchestrator Agent"]
-    Orch -->|"2. A2A Handoff (Monotonic Scope Attenuation)"| Sub["Delegated Sub-Agent (parent_agent_id bound)"]
+> **Live Interactive Dashboard & Trace Replay Player:** [https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)  
+> **Excalidraw Source:** [`docs/architecture.excalidraw`](docs/architecture.excalidraw)
 
-    Sub -->|"3. Untrusted Prompt / Tool Output"| FW["PIIFirewall & Injection Proxy (pii_firewall.py)"]
-    FW -->|"Tokenize <PII:SSN_001>, <PII:AWS_KEY_001> & Quarantine Injections"| MCP["3-Tier Memory MCP Server (memory_mcp.py)"]
-
-    subgraph MemoryCore["ContextCore: 3-Tier Hierarchical Memory MCP"]
-        T1["Tier 1: Working Memory (Token-Budgeted Sliding Window + Priority Pinning)"]
-        T2["Tier 2: Episodic Memory (Compacted Summaries + Exp Temporal Decay)"]
-        T3["Tier 3: Semantic Memory (Hybrid TF-IDF + Entity Store w/ Provenance)"]
-        T1 -->|"Evict Unpinned Oldest Turns"| T2
-        T1 -->|"Promote Salient Enterprise Facts"| T3
-    end
-
-    MCP --> MemoryCore
-    MemoryCore -->|"4. Hydrated Context Package (5.17x Compression)"| GW["MultiModelGateway (model_gateway.py)"]
-
-    subgraph GatewayCore["Multi-Provider AI Gateway"]
-        Loop["Runaway Loop & Cost Kill-Switch + Token Bucket Quota"]
-        Cache["Tenant-Isolated Semantic Cache (Cosine >= 0.80)"]
-        Fast["Fast Tier (aws.nova-micro-v1:0 | ~135ms)"]
-        Reas["Reasoning Tier (claude-3-7-sonnet-thinking | ~920ms)"]
-        Loop --> Cache
-        Cache -->|"Cache Miss (Complexity < 0.55)"| Fast
-        Cache -->|"Cache Miss (Complexity >= 0.55)"| Reas
-    end
-
-    GW --> GatewayCore
-    GatewayCore -->|"5. Proposed Tool Call"| ZT
-    ZT -->|"High-Risk (WIRE_TRANSFER / IAM_MUTATE / DELETE / PROD_DEPLOY)"| JIT["PENDING_JIT_APPROVAL State Machine"]
-    Approver["Human Security Approver"] -->|"Cryptographic Sign-Off"| JIT
-    JIT -->|"6. Selective Tool PII Re-Hydration"| Tool["Authorized Downstream Tool Execution"]
-    ZT -->|"7. Append-Only SHA-256 Hash Chain"| Audit["TamperEvidentAuditLog (human + agent + approver)"]
-```
+![AgentGuard & ContextCore Architecture](docs/architecture.svg)
 
 ---
 

@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" width="100%" height="auto">
+  <defs>
+    <style>
+      .hand-title { font-family: "Virgil", "Comic Sans MS", "Bradley Hand", "Chalkboard SE", cursive, sans-serif; font-size: 21px; font-weight: 700; fill: #1e1e1e; }
+      .hand-sub { font-family: "Virgil", "Comic Sans MS", "Bradley Hand", "Chalkboard SE", cursive, sans-serif; font-size: 13px; fill: #495057; }
+      .box-title { font-family: "Virgil", "Comic Sans MS", "Bradley Hand", "Chalkboard SE", cursive, sans-serif; font-size: 15px; font-weight: 700; fill: #1e1e1e; }
+      .box-body { font-family: "Virgil", "Comic Sans MS", "Bradley Hand", "Chalkboard SE", cursive, sans-serif; font-size: 12px; fill: #1e1e1e; }
+      .box-code { font-family: "Cascadia Code", "Fira Code", "Martian Mono", monospace; font-size: 11px; fill: #1e1e1e; font-weight: 600; }
+      .edge-label { font-family: "Virgil", "Comic Sans MS", "Bradley Hand", "Chalkboard SE", cursive, sans-serif; font-size: 11.5px; font-weight: 700; fill: #1e1e1e; }
+      .rough-fill { stroke: none; }
+      .rough-stroke { fill: none; stroke: #1e1e1e; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .rough-stroke-2 { fill: none; stroke: #1e1e1e; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; }
+      .rough-dash { fill: none; stroke: #495057; stroke-width: 1.8; stroke-dasharray: 7 5; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <!-- Clean Excalidraw White Canvas -->
+  <rect x="0" y="0" width="1120" height="620" fill="#ffffff" rx="8"/>
+
+  <!-- Header Banner -->
+  <text x="560" y="34" text-anchor="middle" class="hand-title">AgentGuard &amp; ContextCore — Zero-Trust Agent Identity, PII Firewall &amp; 3-Tier Memory MCP</text>
+  <text x="560" y="54" text-anchor="middle" class="hand-sub">Excalidraw Architecture · HMAC-SHA256 Scoped A2A Delegation · Pre-Context &lt;PII:...&gt; Proxy · Working → Episodic → Semantic MCP · Multi-Model Gateway</text>
+
+  <!-- ===================================================================
+       ROW 1: IDENTITY & SCOPED A2A DELEGATION
+       =================================================================== -->
+
+  <!-- Box 1: Human Principal (#a5d8ff) -->
+  <g transform="translate(36, 78)">
+    <path class="rough-fill" fill="#a5d8ff" d="M 4 3 L 246 2 L 248 106 L 3 108 Z"/>
+    <path class="rough-stroke" d="M 3 4 C 70 1, 180 5, 247 3 C 249 35, 246 75, 248 107 C 175 109, 80 105, 2 107 C 4 72, 1 33, 3 4 Z"/>
+    <path class="rough-stroke-2" d="M 5 2 C 85 5, 170 1, 245 4 C 247 40, 249 78, 246 105 C 180 106, 75 108, 4 105 C 2 70, 5 35, 5 2 Z"/>
+    <text x="125" y="26" text-anchor="middle" class="box-title">1. Human Principal (IAM)</text>
+    <text x="125" y="46" text-anchor="middle" class="box-code">user/dr-alice-chen</text>
+    <text x="125" y="66" text-anchor="middle" class="box-body">Originates session &amp; bounds</text>
+    <text x="125" y="84" text-anchor="middle" class="box-body">root tools, ARNs, $25 ceiling</text>
+  </g>
+
+  <!-- Hand-drawn Arrow 1 -> 2 -->
+  <g>
+    <path class="rough-stroke" d="M 286 130 C 318 128, 344 132, 374 130"/>
+    <path class="rough-stroke-2" d="M 287 132 C 320 130, 345 129, 373 131"/>
+    <path class="rough-stroke" d="M 363 123 L 376 130 L 364 137"/>
+    <text x="330" y="118" text-anchor="middle" class="edge-label">Mint Root</text>
+    <text x="330" y="148" text-anchor="middle" class="box-code">HMAC-SHA256</text>
+  </g>
+
+  <!-- Box 2: ZeroTrustPolicyEngine (#ffd8a8) -->
+  <g transform="translate(380, 78)">
+    <path class="rough-fill" fill="#ffd8a8" d="M 3 2 L 318 4 L 316 108 L 2 106 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 95 1, 220 5, 317 3 C 319 38, 315 76, 317 107 C 225 109, 95 105, 3 107 C 1 70, 4 34, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 100 3, 215 2, 315 5 C 316 40, 318 75, 315 105 C 220 107, 90 108, 4 105 C 3 68, 2 36, 4 5 Z"/>
+    <text x="160" y="25" text-anchor="middle" class="box-title">2. ZeroTrustPolicyEngine</text>
+    <text x="160" y="45" text-anchor="middle" class="box-code">identity_delegation.py</text>
+    <text x="160" y="65" text-anchor="middle" class="box-body">Constant-time HMAC verification</text>
+    <text x="160" y="83" text-anchor="middle" class="box-body">Enforces monotonic A2A scope</text>
+    <text x="160" y="99" text-anchor="middle" class="box-code">23/23 Escalations Blocked (100%)</text>
+  </g>
+
+  <!-- Hand-drawn Arrow 2 -> 3 -->
+  <g>
+    <path class="rough-stroke" d="M 700 130 C 734 128, 762 132, 794 130"/>
+    <path class="rough-stroke-2" d="M 701 132 C 735 131, 760 129, 793 131"/>
+    <path class="rough-stroke" d="M 783 123 L 796 130 L 784 137"/>
+    <text x="747" y="118" text-anchor="middle" class="edge-label">A2A Handoff</text>
+    <text x="747" y="148" text-anchor="middle" class="box-code">Attenuated</text>
+  </g>
+
+  <!-- Box 3: Delegated Sub-Agent (#d0bfff) -->
+  <g transform="translate(800, 78)">
+    <path class="rough-fill" fill="#d0bfff" d="M 3 3 L 282 2 L 284 107 L 2 106 Z"/>
+    <path class="rough-stroke" d="M 3 3 C 85 5, 195 1, 283 3 C 285 38, 282 74, 283 107 C 190 105, 85 109, 2 106 C 4 72, 1 35, 3 3 Z"/>
+    <path class="rough-stroke-2" d="M 5 5 C 90 2, 190 4, 281 4 C 283 42, 284 76, 281 105 C 185 108, 80 106, 4 104 C 2 68, 5 34, 5 5 Z"/>
+    <text x="142" y="25" text-anchor="middle" class="box-title">3. Scoped Sub-Agent</text>
+    <text x="142" y="45" text-anchor="middle" class="box-code">agent:ehr-clinical-subagent</text>
+    <text x="142" y="65" text-anchor="middle" class="box-body">parent_agent_id bound in token</text>
+    <text x="142" y="83" text-anchor="middle" class="box-body">Allowed: ehr:lookup_patient</text>
+    <text x="142" y="99" text-anchor="middle" class="box-code">Max Cost: $5.00 | Depth: 1/3</text>
+  </g>
+
+  <!-- Arrow from Row 1 down to Row 2 (PII Firewall) -->
+  <path class="rough-stroke" d="M 940 186 C 940 212, 185 202, 185 234"/>
+  <path class="rough-stroke" d="M 178 224 L 185 236 L 192 224"/>
+  <text x="560" y="205" text-anchor="middle" class="edge-label">Untrusted User Prompt / Retrieved RAG Chunks / Tool Output</text>
+
+  <!-- ===================================================================
+       ROW 2: PRE-CONTEXT PII FIREWALL -> 3-TIER MEMORY MCP -> AI GATEWAY
+       =================================================================== -->
+
+  <!-- Box 4: Pre-Context PII & Injection Firewall (#ffc9c9) -->
+  <g transform="translate(36, 240)">
+    <path class="rough-fill" fill="#ffc9c9" d="M 3 3 L 302 2 L 304 142 L 2 140 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 95 5, 210 1, 303 3 C 305 48, 301 98, 303 141 C 205 143, 95 139, 3 141 C 1 95, 4 46, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 100 2, 205 4, 301 4 C 303 52, 304 95, 301 139 C 200 141, 90 142, 4 139 C 3 92, 2 48, 4 5 Z"/>
+    <text x="152" y="26" text-anchor="middle" class="box-title">4. Pre-Context PII Firewall</text>
+    <text x="152" y="45" text-anchor="middle" class="box-code">pii_firewall.py (360/360 Redacted)</text>
+    <text x="152" y="66" text-anchor="middle" class="box-body">Tokenizes SSN, AWS_KEY, CARD,</text>
+    <text x="152" y="84" text-anchor="middle" class="box-body">EMAIL, PHONE, MRN before LLM:</text>
+    <text x="152" y="104" text-anchor="middle" class="box-code">&lt;PII:SSN_001&gt; · &lt;PII:AWS_KEY_001&gt;</text>
+    <text x="152" y="124" text-anchor="middle" class="box-body">Quarantines Prompt Injections &amp; B64</text>
+  </g>
+
+  <!-- Hand-drawn Arrow 4 -> 5 -->
+  <g>
+    <path class="rough-stroke" d="M 342 310 C 365 308, 385 312, 406 310"/>
+    <path class="rough-stroke" d="M 396 303 L 408 310 L 396 317"/>
+    <text x="374" y="298" text-anchor="middle" class="edge-label">Scrubbed</text>
+  </g>
+
+  <!-- Box 5: ContextCore 3-Tier Hierarchical Memory MCP (#b2f2bb) -->
+  <g transform="translate(412, 232)">
+    <path class="rough-fill" fill="#b2f2bb" d="M 3 3 L 336 2 L 338 156 L 2 154 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 110 5, 230 1, 337 3 C 339 55, 335 108, 337 155 C 225 157, 105 153, 3 155 C 1 105, 4 52, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 115 2, 225 4, 335 4 C 337 58, 338 105, 335 153 C 220 155, 100 156, 4 153 C 3 102, 2 54, 4 5 Z"/>
+    <text x="170" y="24" text-anchor="middle" class="box-title">5. ContextCore 3-Tier Memory MCP</text>
+    <text x="170" y="42" text-anchor="middle" class="box-code">memory_mcp.py (100% Recall@4 · 5.17x)</text>
+    <!-- Internal Mini Tiers -->
+    <rect x="14" y="52" width="310" height="26" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" rx="4"/>
+    <text x="169" y="69" text-anchor="middle" class="box-code">Tier 1 Working: Sliding Window + Pinned</text>
+    <rect x="14" y="84" width="310" height="26" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" rx="4"/>
+    <text x="169" y="101" text-anchor="middle" class="box-code">Tier 2 Episodic: Compacted + Exp Decay</text>
+    <rect x="14" y="116" width="310" height="28" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" rx="4"/>
+    <text x="169" y="134" text-anchor="middle" class="box-code">Tier 3 Semantic: TF-IDF + Turn Provenance</text>
+  </g>
+
+  <!-- Hand-drawn Arrow 5 -> 6 -->
+  <g>
+    <path class="rough-stroke" d="M 752 310 C 774 308, 792 312, 812 310"/>
+    <path class="rough-stroke" d="M 802 303 L 814 310 L 802 317"/>
+    <text x="783" y="298" text-anchor="middle" class="edge-label">Hydrated</text>
+  </g>
+
+  <!-- Box 6: Multi-Model AI Gateway & Live LLM Client (#ffec99) -->
+  <g transform="translate(818, 240)">
+    <path class="rough-fill" fill="#ffec99" d="M 3 3 L 264 2 L 266 142 L 2 140 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 85 5, 180 1, 265 3 C 267 48, 263 98, 265 141 C 180 143, 85 139, 3 141 C 1 95, 4 46, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 90 2, 175 4, 263 4 C 265 52, 266 95, 263 139 C 175 141, 80 142, 4 139 C 3 92, 2 48, 4 5 Z"/>
+    <text x="133" y="26" text-anchor="middle" class="box-title">6. Multi-Model Gateway</text>
+    <text x="133" y="45" text-anchor="middle" class="box-code">model_gateway.py + llm_client.py</text>
+    <text x="133" y="65" text-anchor="middle" class="box-body">• Semantic Cache (84% Hit, 1.2ms)</text>
+    <text x="133" y="83" text-anchor="middle" class="box-body">• Fast: nova-micro / gpt-4o-mini</text>
+    <text x="133" y="101" text-anchor="middle" class="box-body">• Deep: claude-opus-5-5</text>
+    <text x="133" y="121" text-anchor="middle" class="box-code">Loop &amp; USD Cost Kill-Switch</text>
+  </g>
+
+  <!-- Arrow from Row 2 down to Row 3 -->
+  <path class="rough-stroke" d="M 950 384 C 950 415, 290 400, 290 434"/>
+  <path class="rough-stroke" d="M 283 424 L 290 436 L 297 424"/>
+  <text x="615" y="412" text-anchor="middle" class="edge-label">Proposed Tool Call + Token Scope Check + Selective PII Re-Hydration</text>
+
+  <!-- ===================================================================
+       ROW 3: JIT APPROVAL PROXY -> SELECTIVE RE-HYDRATION -> AUDIT CHAIN
+       =================================================================== -->
+
+  <!-- Box 7: JIT Human Approval State Machine & Re-Hydration (#ffd8a8) -->
+  <g transform="translate(66, 438)">
+    <path class="rough-fill" fill="#ffd8a8" d="M 3 3 L 456 2 L 458 132 L 2 130 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 145 5, 315 1, 457 3 C 459 45, 455 90, 457 131 C 310 133, 145 129, 3 131 C 1 88, 4 44, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 150 2, 310 4, 455 4 C 457 48, 458 88, 455 129 C 305 131, 140 132, 4 129 C 3 85, 2 46, 4 5 Z"/>
+    <text x="229" y="26" text-anchor="middle" class="box-title">7. JIT Approval Gate &amp; Selective Tool Re-Hydration</text>
+    <text x="229" y="46" text-anchor="middle" class="box-code">PENDING_JIT_APPROVAL → APPROVED (Signed by Sec-Approver)</text>
+    <text x="229" y="68" text-anchor="middle" class="box-body">High-risk tools (WIRE_TRANSFER, PROD_DEPLOY, IAM_MUTATE, DELETE)</text>
+    <text x="229" y="86" text-anchor="middle" class="box-body">suspend until human sign-off. Authorized tools re-hydrate only</text>
+    <text x="229" y="106" text-anchor="middle" class="box-code">permitted &lt;PII:...&gt; categories (blocks unauthorized leaks)</text>
+  </g>
+
+  <!-- Hand-drawn Arrow 7 -> 8 -->
+  <g>
+    <path class="rough-stroke" d="M 526 504 C 556 502, 584 506, 612 504"/>
+    <path class="rough-stroke" d="M 602 497 L 614 504 L 602 511"/>
+    <text x="570" y="492" text-anchor="middle" class="edge-label">3-Way Log</text>
+  </g>
+
+  <!-- Box 8: Tamper-Evident SHA-256 Hash-Chained Audit Log (#a5d8ff) -->
+  <g transform="translate(618, 438)">
+    <path class="rough-fill" fill="#a5d8ff" d="M 3 3 L 456 2 L 458 132 L 2 130 Z"/>
+    <path class="rough-stroke" d="M 2 3 C 145 5, 315 1, 457 3 C 459 45, 455 90, 457 131 C 310 133, 145 129, 3 131 C 1 88, 4 44, 2 3 Z"/>
+    <path class="rough-stroke-2" d="M 4 5 C 150 2, 310 4, 455 4 C 457 48, 458 88, 455 129 C 305 131, 140 132, 4 129 C 3 85, 2 46, 4 5 Z"/>
+    <text x="229" y="26" text-anchor="middle" class="box-title">8. Tamper-Evident SHA-256 Attribution Audit Chain</text>
+    <text x="229" y="46" text-anchor="middle" class="box-code">entry_hash = SHA256(canonical_json(entry) || prev_hash)</text>
+    <text x="229" y="68" text-anchor="middle" class="box-body">Cryptographically binds 3 distinct actors on every tool execution:</text>
+    <text x="229" y="88" text-anchor="middle" class="box-code">human_actor + delegated_agent_actor + approver_actor</text>
+    <text x="229" y="108" text-anchor="middle" class="box-body">Detects any post-hoc log mutation across genesis → head chain</text>
+  </g>
+</svg>
