@@ -97,19 +97,3 @@ python3 -m unittest discover -s tests -v
 # 2. Run the full 4-suite benchmark CLI and regenerate benchmarks/latest_results.json
 python3 -m agent_guard.cli
 ```
-
----
-
-## Tailored Resume Bullets (Copy-Paste Ready)
-
-- **Target: AWS Role #6 — Sr. SDE, AI Agent Identity & Governance (AWS Applied AI Solutions – Core Services)**
-  > Engineered a Zero-Trust AI Agent Identity & Governance runtime (`AgentGuard`) using `HMAC-SHA256` capability tokens with monotonic scope attenuation across multi-hop Agent-to-Agent (A2A) handoffs, blocking **100% (23/23)** of red-team privilege escalation and token-tampering attacks while enforcing Just-In-Time (JIT) human approval workflows and `SHA-256` hash-chained attribution logs across human principals, delegated agents, and approvers.
-
-- **Target: AWS Role #7 — Sr. Software Engineer, Hierarchical Memory & Context Systems (AWS Applied AI Solutions – Core Services)**
-  > Architected a 3-Tier Hierarchical Agent Memory MCP platform (`ContextCore`: priority-pinned Working window $\rightarrow$ temporally decayed Episodic compaction $\rightarrow$ provenance-indexed TF-IDF Semantic store), achieving **100.0% needle-in-haystack Recall@4** across 65 turns of distractor churn (vs. **0.0%** for naive FIFO sliding windows) at a **5.17x token compression ratio**.
-
-- **Target: AWS Role #8 — Senior SDE, Luna Gen AI (Multi-Model Gateway, Semantic Caching & Cost Governance)**
-  > Built a complexity-aware Multi-Provider AI Gateway routing routine queries to low-latency fast tiers and escalating multi-step reasoning toolchains, paired with a tenant-isolated similarity Semantic Cache (`84.0%` hit rate), token-bucket rate limiter, and runaway-loop/cost kill-switches to cut inference spend by **89.6%** and reduce mean latency from **920ms to 86.8ms**.
-
-- **Target: AWS Role #20 — Senior Applied AI Solutions Architect, Amazon Connect (MCP Servers, A2A Handoffs & Guardrails)**
-  > Designed an MCP-compliant conversational memory server and reversible pre-context PII firewall that deterministically tokenizes 6 regulated entity classes (`SSN`, `AWS_ACCESS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, `PATIENT_MRN`) with **100.0% recall (360/360)** and selective per-tool re-hydration while blocking **100% (40/40)** of indirect prompt-injection and Base64-smuggled tool hijacks at **0.0% false positive rate**.
