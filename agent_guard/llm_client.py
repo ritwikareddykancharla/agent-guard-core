@@ -52,14 +52,13 @@ from .pii_firewall import (
 def load_dotenv_local() -> dict[str, str]:
     """
     Load environment variables from `.env.local` in current or parent directories
-    (including `/Users/ritwika/projects/interview-prep/.env.local`) without
-    hardcoding any secrets in source code.
+    without hardcoding any secrets in source code.
     """
     candidates = [
         Path.cwd() / ".env.local",
         Path.cwd().parent / ".env.local",
         Path.cwd().parent.parent / ".env.local",
-        Path("/Users/ritwika/projects/interview-prep/.env.local"),
+        *[p / ".env.local" for p in Path(__file__).resolve().parents],
     ]
     loaded: dict[str, str] = {}
     for path in candidates:
