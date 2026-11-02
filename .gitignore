@@ -2,7 +2,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
-.pytest_cache/
+.eggs/
 dist/
 build/
+.env
+.env.*
+!.env.example
 .DS_Store

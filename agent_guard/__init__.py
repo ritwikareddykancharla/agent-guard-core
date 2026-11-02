@@ -19,6 +19,10 @@ from .identity_delegation import (
     TokenVerificationError,
     ZeroTrustPolicyEngine,
 )
+from .llm_client import (
+    GuardedCompletionResult,
+    GuardedLLMClient,
+)
 from .memory_mcp import (
     EpisodicSegment,
     EvictionBenchmarkResult,
@@ -57,6 +61,8 @@ __all__ = [
     "FirewallInspectionResult",
     "GatewayRequest",
     "GatewayResponse",
+    "GuardedCompletionResult",
+    "GuardedLLMClient",
     "HierarchicalMemoryMCPServer",
     "JITApprovalRequest",
     "JITApprovalStatus",

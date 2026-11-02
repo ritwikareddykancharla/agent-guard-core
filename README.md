@@ -2,31 +2,34 @@
 
 **Zero-Trust AI Agent Identity, Scoped A2A Delegation, JIT Approval Proxy, Pre-Context PII Firewall, 3-Tier Hierarchical Memory MCP Server & Multi-Model Gateway**
 
+> **🚀 Live Interactive Web Application & Dual-Model Trace Replay (`claude-opus-5-5` vs. `gpt-4o-mini`):**  
+> **[https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)**
+
+[![Live Demo](https://img.shields.io/badge/Live%20Interactive%20Demo-GitHub%20Pages-b01c30.svg)](https://ritwikareddykancharla.github.io/agent-guard-core/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B%20%7C%203.14-blue.svg)](https://www.python.org/)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-zero%20(stdlib)-brightgreen.svg)](#quickstart)
-[![Tests: 18/18 Passing](https://img.shields.io/badge/tests-18%2F18%20passing-success.svg)](#verification--test-suite)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-zero%20(stdlib)-brightgreen.svg)](#quickstart--verification)
+[![Tests: 20/20 Passing](https://img.shields.io/badge/tests-20%2F20%20passing-success.svg)](#quickstart--verification)
 
 `AgentGuard & ContextCore` is a production-grade, standalone Python reference architecture addressing four foundational challenges in enterprise multi-agent platforms:
 
 1. **Cryptographic Agent Identity, Scoped A2A Delegation & Just-In-Time (JIT) Governance (`agent_guard/identity_delegation.py`)**: Mints `HMAC-SHA256` capability tokens binding human principals, primary agents, and sub-agents (`parent_agent_id`) with strict monotonic privilege attenuation across tools, AWS ARN patterns, USD cost ceilings, and TTLs. Automatically suspends high-risk operations (`DELETE`, `IAM_MUTATE`, `WIRE_TRANSFER`, `PROD_DEPLOY`) into `PENDING_JIT_APPROVAL` until cryptographically signed by a human approver, writing tamper-evident `SHA-256` hash-chained attribution logs.
 2. **Reversible Pre-Context PII Redaction Proxy & Indirect Prompt-Injection Firewall (`agent_guard/pii_firewall.py`)**: Detects and deterministically tokenizes 6 PII/secret classes (`SSN`, `AWS_ACCESS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, `PATIENT_MRN`) into typed placeholders (`<PII:SSN_001>`, `<PII:AWS_KEY_001>`) *before* prompts or tool outputs enter the LLM context window, selectively re-hydrating only authorized categories per downstream tool. Quarantines cross-agent indirect prompt injections, ChatML/XML role-spoofing delimiters, covert exfiltration beacons, Base64-smuggled overrides, and tool-schema fuzzing payloads.
 3. **3-Tier Hierarchical Agent Memory MCP Server (`agent_guard/memory_mcp.py`)**: Implements an MCP-compliant (`list_tools` / `call_tool`) memory hierarchy spanning **Tier 1 Working Memory** (token-budgeted sliding window with priority pinning for system guardrails/tool schemas), **Tier 2 Episodic Memory** (automatic compaction of evicted turns with exponential temporal decay scoring), and **Tier 3 Semantic Memory** (hybrid TF-IDF + entity-boosted vector store with turn provenance citations).
-4. **Multi-Provider AI Gateway (`agent_guard/model_gateway.py`)**: Routes ~90% of routine operational queries to low-latency fast models (`aws.nova-micro-v1:0`) and escalates multi-hop reasoning/verification queries to deep reasoning models (`anthropic.claude-3-7-sonnet-thinking-v1:0`), backed by a tenant-isolated similarity **Semantic Cache**, per-tenant **Token Bucket Rate Limiter**, **Runaway Loop Circuit Breaker**, and hard **USD Cost Kill-Switch**.
+4. **Multi-Provider AI Gateway & Guarded LLM Client (`agent_guard/model_gateway.py`, `agent_guard/llm_client.py`)**: Routes ~90% of routine operational queries to low-latency fast models (`aws.nova-micro-v1:0` / `gpt-4o-mini`) and escalates multi-hop reasoning/verification queries to deep reasoning models (`claude-opus-5-5` / `claude-3-7-sonnet-thinking-v1:0`), backed by a tenant-isolated similarity **Semantic Cache**, per-tenant **Token Bucket Rate Limiter**, **Runaway Loop Circuit Breaker**, and hard **USD Cost Kill-Switch**.
 
 ---
 
 ## System Architecture
 
-> **Live Interactive Dashboard & Trace Replay Player:** [https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)  
-> **Excalidraw Source:** [`docs/architecture.excalidraw`](docs/architecture.excalidraw)
-
 ![AgentGuard & ContextCore Architecture](docs/architecture.svg)
+
+*Hand-drawn Excalidraw architecture diagram — [Open source scene in Excalidraw (`docs/architecture.excalidraw`)](docs/architecture.excalidraw).*
 
 ---
 
 ## Measured Benchmark Results
 
-Generated out-of-the-box by running `python3 -m agent_guard.cli` (persisted to [`benchmarks/latest_results.json`](benchmarks/latest_results.json)):
+Generated out-of-the-box by running `python3 -m agent_guard.cli` (persisted to [`benchmarks/latest_results.json`](benchmarks/latest_results.json)) alongside real dual-model production traces on **Anthropic `claude-opus-5-5`** and **OpenAI `gpt-4o-mini`** in [`benchmarks/live_llm_traces.json`](benchmarks/live_llm_traces.json):
 
 ### 1. Consolidated Subsystem Benchmarks
 
@@ -66,11 +69,17 @@ agent-guard-core/
 │   ├── pii_firewall.py            # Pre-context PII tokenization, selective tool re-hydration, prompt-injection firewall
 │   ├── memory_mcp.py              # 3-Tier Hierarchical Memory MCP server (Working -> Episodic -> Semantic) & stress test
 │   ├── model_gateway.py           # Fast/Reasoning router, tenant-isolated semantic cache, token bucket & cost kill-switch
+│   ├── llm_client.py              # Real Multi-Provider GuardedLLMClient (Anthropic, OpenAI, Gemini, Bedrock)
 │   └── cli.py                     # Reproducible benchmark runner generating benchmarks/latest_results.json
 ├── benchmarks/
-│   └── latest_results.json        # Latest measured benchmark telemetry
+│   ├── latest_results.json        # Latest measured benchmark telemetry
+│   └── live_llm_traces.json       # Captured dual-model production traces (claude-opus-5-5 & gpt-4o-mini)
+├── docs/
+│   ├── index.html                 # Interactive GitHub Pages web app & 7-hop Live Trace Replay Player
+│   ├── architecture.svg           # Excalidraw-style hand-drawn architecture diagram
+│   └── architecture.excalidraw    # Editable Excalidraw scene source
 ├── tests/
-│   └── test_agent_guard.py        # 18 comprehensive unit tests across all 4 subsystems
+│   └── test_agent_guard.py        # 20 comprehensive unit tests across all subsystems
 ├── pyproject.toml                 # Zero-dependency standard-library Python package configuration
 └── README.md
 ```
@@ -82,7 +91,7 @@ agent-guard-core/
 Requires **Python 3.11+** (tested on **Python 3.14.6**). Uses the Python standard library exclusively so all cryptographic verification, TF-IDF vector indexing, PII tokenization, and benchmark harnesses run deterministically with **zero external API keys**.
 
 ```bash
-# 1. Run all 18 unit tests
+# 1. Run all 20 unit tests
 python3 -m unittest discover -s tests -v
 
 # 2. Run the full 4-suite benchmark CLI and regenerate benchmarks/latest_results.json
