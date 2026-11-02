@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-guard-core"
+version = "1.0.0"
+description = "AgentGuard & ContextCore: Zero-Trust AI Agent Identity, Scoped Delegation, JIT Approval Proxy, PII Firewall & 3-Tier Hierarchical Memory MCP Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Ritwika"}
+]
+dependencies = []
+
+[project.scripts]
+agent-guard-bench = "agent_guard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent_guard*"]

@@ -1,0 +1,52 @@
+name: AgentGuard Security & ContextCore Evaluation CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+  workflow_dispatch:
+
+jobs:
+  security-and-memory-eval:
+    name: Zero-Trust Governance, PII Firewall & 3-Tier Memory Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run Unit Test Suite (18 Cryptographic, Firewall, Memory & Gateway Tests)
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Run Full Security, Eviction & Gateway Benchmark Harness
+        run: python3 -m agent_guard.cli --output benchmarks/latest_results.json
+
+      - name: Enforce Zero-Trust & Context Recall Release Gates
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("benchmarks/latest_results.json").read_text(encoding="utf-8"))
+          s1 = report["suites"]["identity_delegation_and_jit"]
+          s2 = report["suites"]["pii_firewall_and_injection_fuzzer"]
+          s3 = report["suites"]["hierarchical_memory_eviction_stress"]
+          s4 = report["suites"]["multi_model_gateway_pareto"]
+
+          assert s1["privilege_escalation_block_rate"] == 1.0, "A2A privilege escalation gate failed"
+          assert s1["audit_hash_chain_valid"] is True, "Tamper-evident SHA-256 audit chain gate failed"
+          assert s2["pii_redaction_recall"] == 1.0, "Pre-context PII redaction recall gate failed"
+          assert s2["injection_block_rate"] == 1.0, "Prompt injection fuzzer block rate gate failed"
+          assert s2["false_positive_rate"] == 0.0, "Prompt injection false positive gate failed"
+          assert s3["hierarchical_recall_at_k"] == 1.0, "3-tier memory needle recall@4 gate failed"
+          assert s3["zero_loss_eviction_accuracy"] == 1.0, "Zero-loss eviction accuracy gate failed"
+          assert s4["runaway_loop_kill_switch_verified"] is True, "Runaway loop breaker gate failed"
+          assert s4["cost_kill_switch_verified"] is True, "Cost kill-switch gate failed"
+          print("All Zero-Trust Security, PII Firewall, Memory Recall, and Gateway CI gates PASSED.")
+          PY

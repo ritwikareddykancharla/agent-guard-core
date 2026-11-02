@@ -1,0 +1,128 @@
+{
+  "project": "AgentGuard & ContextCore",
+  "version": "1.0.0",
+  "suites": {
+    "identity_delegation_and_jit": {
+      "escalation_attempts_tested": 23,
+      "escalation_attempts_blocked": 23,
+      "privilege_escalation_block_rate": 1.0,
+      "high_risk_calls_tested": 4,
+      "jit_suspended_count": 4,
+      "jit_approved_and_executed": 4,
+      "audit_log_entries": 37,
+      "audit_hash_chain_valid": true,
+      "audit_verification_detail": "Verified 37 hash-chained entries",
+      "latency_ms": 1.25
+    },
+    "pii_firewall_and_injection_fuzzer": {
+      "total_synthetic_test_cases": 120,
+      "pii_test_cases": 60,
+      "pii_entities_injected": 360,
+      "pii_entities_redacted": 360,
+      "pii_redaction_recall": 1.0,
+      "selective_rehydration_accuracy": 1.0,
+      "malicious_injections_tested": 40,
+      "malicious_injections_blocked": 40,
+      "injection_block_rate": 1.0,
+      "benign_controls_tested": 20,
+      "false_positive_rate": 0.0,
+      "latency_ms": 3.59
+    },
+    "hierarchical_memory_eviction_stress": {
+      "total_turns_ingested": 65,
+      "planted_needles_count": 8,
+      "working_token_budget": 220,
+      "total_raw_tokens": 1819,
+      "assembled_context_tokens": 352,
+      "token_compression_ratio": 5.17,
+      "hierarchical_recall_at_k": 1.0,
+      "naive_window_recall_at_k": 0.0,
+      "zero_loss_eviction_accuracy": 1.0,
+      "evictions_triggered": 58,
+      "tier1_working_count": 7,
+      "tier2_episodic_count": 57,
+      "tier3_semantic_count": 8,
+      "per_needle_results": [
+        {
+          "category": "sla_constraint",
+          "expected_marker": "99.995%",
+          "source_turn_id": "turn-0003",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 327
+        },
+        {
+          "category": "security_exception",
+          "expected_marker": "SEC-EXC-4092",
+          "source_turn_id": "turn-0010",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 332
+        },
+        {
+          "category": "architectural_decision",
+          "expected_marker": "ADR-014",
+          "source_turn_id": "turn-0018",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 319
+        },
+        {
+          "category": "compliance_residency",
+          "expected_marker": "eu-central-1",
+          "source_turn_id": "turn-0026",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 375
+        },
+        {
+          "category": "capacity_limit",
+          "expected_marker": "4,500 WCU",
+          "source_turn_id": "turn-0034",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 385
+        },
+        {
+          "category": "financial_guardrail",
+          "expected_marker": "$2,500",
+          "source_turn_id": "turn-0042",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 327
+        },
+        {
+          "category": "kms_rotation",
+          "expected_marker": "90 days",
+          "source_turn_id": "turn-0050",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 375
+        },
+        {
+          "category": "incident_escalation",
+          "expected_marker": "850ms",
+          "source_turn_id": "turn-0057",
+          "hierarchical_recalled": true,
+          "naive_window_recalled": false,
+          "assembled_tokens": 380
+        }
+      ]
+    },
+    "multi_model_gateway_pareto": {
+      "workload_requests": 100,
+      "semantic_cache_hits": 84,
+      "semantic_cache_hit_rate": 0.84,
+      "fast_tier_requests": 10,
+      "reasoning_tier_requests": 8,
+      "gateway_total_cost_usd": 0.007814,
+      "baseline_all_reasoning_cost_usd": 0.075018,
+      "cost_savings_pct": 89.58,
+      "mean_gateway_latency_ms": 86.75,
+      "baseline_reasoning_latency_ms": 920.0,
+      "runaway_loop_kill_switch_verified": true,
+      "cost_kill_switch_verified": true,
+      "benchmark_wall_time_ms": 7.49
+    }
+  }
+}
