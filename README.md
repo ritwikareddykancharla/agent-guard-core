@@ -1,5 +1,8 @@
 # AgentGuard & ContextCore
 
+> **☁️ Live AWS Deployment (`us-west-2` Lambda Function URL):** [https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/](https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/)  
+> **Health Check:** `https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/health` · **Live Execution API:** `curl -s -X POST https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/run -H 'Content-Type: application/json' -d '{}'`
+
 **Zero-Trust AI Agent Identity, Scoped A2A Delegation, JIT Approval Proxy, Pre-Context PII Firewall, 3-Tier Hierarchical Memory MCP Server & Multi-Model Gateway**
 
 > **🚀 Live Interactive Web Application & Dual-Model Trace Replay (`claude-opus-5-5` vs. `gpt-4o-mini`):**  
