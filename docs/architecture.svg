@@ -18,7 +18,7 @@
   <rect x="0" y="0" width="1120" height="620" fill="#ffffff" rx="8"/>
 
   <!-- Header Banner -->
-  <text x="560" y="34" text-anchor="middle" class="hand-title">AgentGuard &amp; ContextCore — Zero-Trust Agent Identity, PII Firewall &amp; 3-Tier Memory MCP</text>
+  <text x="560" y="34" text-anchor="middle" class="hand-title">AgentGuard — PII Redaction, Scoped Sub-Agent Auth &amp; Semantic Cache Proxy</text>
   <text x="560" y="54" text-anchor="middle" class="hand-sub">Excalidraw Architecture · HMAC-SHA256 Scoped A2A Delegation · Pre-Context &lt;PII:...&gt; Proxy · Working → Episodic → Semantic MCP · Multi-Model Gateway</text>
 
   <!-- ===================================================================
@@ -53,7 +53,7 @@
     <text x="160" y="25" text-anchor="middle" class="box-title">2. ZeroTrustPolicyEngine</text>
     <text x="160" y="45" text-anchor="middle" class="box-code">identity_delegation.py</text>
     <text x="160" y="65" text-anchor="middle" class="box-body">Constant-time HMAC verification</text>
-    <text x="160" y="83" text-anchor="middle" class="box-body">Enforces monotonic A2A scope</text>
+    <text x="160" y="83" text-anchor="middle" class="box-body">Child tokens only narrow scope</text>
     <text x="160" y="99" text-anchor="middle" class="box-code">23/23 Escalations Blocked (100%)</text>
   </g>
 

@@ -18,16 +18,13 @@
 
 ---
 
-## How It Works
+## System Architecture
 
-```mermaid
-flowchart LR
-    Req["Incoming Agent / API Request"] --> Auth["Scoped HMAC-SHA256 Token Check\n& Human Approval Gate"]
-    Auth --> Redact["PII Redactor & Injection Filter\n(<PII:SSN_001>, 0% FPR)"]
-    Redact --> Mem["Session Memory Compactor\n(Pinned + Summary + TF-IDF Index)"]
-    Mem --> GW["Semantic Cache & Model Router\n(Rate Limit + USD Budget Cap)"]
-    GW --> Audit["Hash-Chained SHA-256 Audit Log"]
-```
+> **Excalidraw Source:** [`docs/architecture.excalidraw`](docs/architecture.excalidraw)
+
+![AgentGuard Architecture Diagram](docs/architecture.svg)
+
+## How It Works
 
 1. **Scoped Auth Tokens & Human Approval Gate (`agent_guard/identity_delegation.py`)**  
    Issues `HMAC-SHA256` signed permission tokens binding user identity, parent agent ID, allowed tool names, AWS resource ARN patterns, USD spend cap, and expiration timestamp. Child tokens can only narrow (never widen) their parent token's permissions; high-risk operations pause in `PENDING_JIT_APPROVAL` until signed by an approver, and every decision is appended to a `SHA-256` hash-chained audit log.
