@@ -5,7 +5,7 @@
 > **Live API Call:** `curl -s -X POST https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/run -H 'Content-Type: application/json' -d '{}'`  
 > **Interactive Web UI:** [https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)
 
-**AgentGuard** is a zero-dependency Python LLM API gateway and session-memory service. It strips SSNs, emails, payment cards, and cloud secrets before outbound model calls, blocks prompt-injection payloads, scopes sub-agent tool permissions using signed `HMAC-SHA256` tokens, compacts long multi-turn conversation histories without losing earlier facts, and caches/routes repetitive queries to cut inference spend and latency.
+**AgentGuard** sits in front of external LLM APIs to strip SSNs, payment cards, emails, and cloud keys before prompts leave the VPC, restrict delegated sub-agents to short-lived scoped tool tokens, retain early constraints across long multi-turn sessions, and serve repetitive operational queries from cache (`-89.6%` spend, `920 ms -> 86.8 ms` mean latency).
 
 ---
 

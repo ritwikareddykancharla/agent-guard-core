@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "agent-guard-core"
 version = "1.0.0"
-description = "AgentGuard & ContextCore: Zero-Trust AI Agent Identity, Scoped Delegation, JIT Approval Proxy, PII Firewall & 3-Tier Hierarchical Memory MCP Platform"
+description = "LLM API proxy for PII redaction, scoped sub-agent tool permissions, and semantic query caching"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
