@@ -1,102 +1,71 @@
-# AgentGuard & ContextCore
+# AgentGuard — PII Redaction, Scoped Auth & Semantic Cache Proxy
 
-> **☁️ Live AWS Deployment (`us-west-2` Lambda Function URL):** [https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/](https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/)  
-> **Health Check:** `https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/health` · **Live Execution API:** `curl -s -X POST https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/run -H 'Content-Type: application/json' -d '{}'`
+> **Live AWS Endpoint (`us-west-2` Lambda Function URL):** [https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/](https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/)  
+> **Health Check:** `https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/health`  
+> **Live API Call:** `curl -s -X POST https://y2qiwqdqy6pcanovnw2yjery5e0jqufc.lambda-url.us-west-2.on.aws/api/run -H 'Content-Type: application/json' -d '{}'`  
+> **Interactive Web UI:** [https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)
 
-**Zero-Trust AI Agent Identity, Scoped A2A Delegation, JIT Approval Proxy, Pre-Context PII Firewall, 3-Tier Hierarchical Memory MCP Server & Multi-Model Gateway**
-
-> **🚀 Live Interactive Web Application & Dual-Model Trace Replay (`claude-opus-5-5` vs. `gpt-4o-mini`):**  
-> **[https://ritwikareddykancharla.github.io/agent-guard-core/](https://ritwikareddykancharla.github.io/agent-guard-core/)**
-
-[![Live Demo](https://img.shields.io/badge/Live%20Interactive%20Demo-GitHub%20Pages-b01c30.svg)](https://ritwikareddykancharla.github.io/agent-guard-core/)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B%20%7C%203.14-blue.svg)](https://www.python.org/)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-zero%20(stdlib)-brightgreen.svg)](#quickstart--verification)
-[![Tests: 20/20 Passing](https://img.shields.io/badge/tests-20%2F20%20passing-success.svg)](#quickstart--verification)
-
-`AgentGuard & ContextCore` is a production-grade, standalone Python reference architecture addressing four foundational challenges in enterprise multi-agent platforms:
-
-1. **Cryptographic Agent Identity, Scoped A2A Delegation & Just-In-Time (JIT) Governance (`agent_guard/identity_delegation.py`)**: Mints `HMAC-SHA256` capability tokens binding human principals, primary agents, and sub-agents (`parent_agent_id`) with strict monotonic privilege attenuation across tools, AWS ARN patterns, USD cost ceilings, and TTLs. Automatically suspends high-risk operations (`DELETE`, `IAM_MUTATE`, `WIRE_TRANSFER`, `PROD_DEPLOY`) into `PENDING_JIT_APPROVAL` until cryptographically signed by a human approver, writing tamper-evident `SHA-256` hash-chained attribution logs.
-2. **Reversible Pre-Context PII Redaction Proxy & Indirect Prompt-Injection Firewall (`agent_guard/pii_firewall.py`)**: Detects and deterministically tokenizes 6 PII/secret classes (`SSN`, `AWS_ACCESS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, `PATIENT_MRN`) into typed placeholders (`<PII:SSN_001>`, `<PII:AWS_KEY_001>`) *before* prompts or tool outputs enter the LLM context window, selectively re-hydrating only authorized categories per downstream tool. Quarantines cross-agent indirect prompt injections, ChatML/XML role-spoofing delimiters, covert exfiltration beacons, Base64-smuggled overrides, and tool-schema fuzzing payloads.
-3. **3-Tier Hierarchical Agent Memory MCP Server (`agent_guard/memory_mcp.py`)**: Implements an MCP-compliant (`list_tools` / `call_tool`) memory hierarchy spanning **Tier 1 Working Memory** (token-budgeted sliding window with priority pinning for system guardrails/tool schemas), **Tier 2 Episodic Memory** (automatic compaction of evicted turns with exponential temporal decay scoring), and **Tier 3 Semantic Memory** (hybrid TF-IDF + entity-boosted vector store with turn provenance citations).
-4. **Multi-Provider AI Gateway & Guarded LLM Client (`agent_guard/model_gateway.py`, `agent_guard/llm_client.py`)**: Routes ~90% of routine operational queries to low-latency fast models (`aws.nova-micro-v1:0` / `gpt-4o-mini`) and escalates multi-hop reasoning/verification queries to deep reasoning models (`claude-opus-5-5` / `claude-3-7-sonnet-thinking-v1:0`), backed by a tenant-isolated similarity **Semantic Cache**, per-tenant **Token Bucket Rate Limiter**, **Runaway Loop Circuit Breaker**, and hard **USD Cost Kill-Switch**.
+**AgentGuard** is a zero-dependency Python LLM API gateway and session-memory service. It strips SSNs, emails, payment cards, and cloud secrets before outbound model calls, blocks prompt-injection payloads, scopes sub-agent tool permissions using signed `HMAC-SHA256` tokens, compacts long multi-turn conversation histories without losing earlier facts, and caches/routes repetitive queries to cut inference spend and latency.
 
 ---
 
-## System Architecture
+## What Problem This Solves
 
-![AgentGuard & ContextCore Architecture](docs/architecture.svg)
-
-*Hand-drawn Excalidraw architecture diagram — [Open source scene in Excalidraw (`docs/architecture.excalidraw`)](docs/architecture.excalidraw).*
-
----
-
-## Measured Benchmark Results
-
-Generated out-of-the-box by running `python3 -m agent_guard.cli` (persisted to [`benchmarks/latest_results.json`](benchmarks/latest_results.json)) alongside real dual-model production traces on **Anthropic `claude-opus-5-5`** and **OpenAI `gpt-4o-mini`** in [`benchmarks/live_llm_traces.json`](benchmarks/live_llm_traces.json):
-
-### 1. Consolidated Subsystem Benchmarks
-
-| Subsystem Suite | Primary Metric | Measured Result | Engineering Notes |
-| :--- | :--- | :--- | :--- |
-| **1. Zero-Trust Identity & A2A Scope** | Privilege Escalation Block Rate | **23 / 23 (`100.0%`)** | Blocks tool wildcard broadening, ARN escape, budget/TTL inflation, and HMAC tampering |
-| **1. JIT Approval Proxy & Audit Chain** | High-Risk Actions Suspended $\rightarrow$ Signed | **4 / 4 (`100.0%`)** | `WIRE_TRANSFER`, `IAM_MUTATE`, `DELETE`, `PROD_DEPLOY`; **37/37** SHA-256 hash links verified |
-| **2. Pre-Context PII Firewall** | Deterministic Redaction & Selective Re-hydration | **360 / 360 (`100.0%`)** | 60 multi-entity docs across `SSN`, `AWS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, `PATIENT_MRN` |
-| **2. Prompt-Injection Red-Team Fuzzer** | Malicious Payload Block / Benign FPR | **40 / 40 (`100.0%`)** | **0.0% False Positive Rate** on 20 benign controls; blocks Base64-smuggled & ChatML injections |
-| **3. 3-Tier Hierarchical Memory MCP** | Needle Recall@4 vs. Naive FIFO Window | **`100.0%` vs. `0.0%`** | **5.17x token compression** (`1,819` raw tokens $\rightarrow$ `352` assembled tokens across 65 turns) |
-| **4. Multi-Model AI Gateway & Cache** | Cost Reduction & Latency vs. Reasoning Baseline | **`89.6%` Cost Saved** | **84.0% Semantic Cache hit rate**; mean latency **86.8ms** vs. **920.0ms** all-reasoning baseline |
-
-### 2. Per-Needle Eviction Stress Test Breakdown (`working_token_budget = 220`, `65` Turns, `58` Evictions)
-
-| Planted Enterprise Needle Category | Source Turn | Expected Marker | 3-Tier Memory Recall@4 | Naive FIFO Sliding Window | Assembled Context Tokens |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| `sla_constraint` | `turn-0003` | `99.995%` | **Recalled (`True`)** | Evicted / Lost (`False`) | 327 |
-| `security_exception` | `turn-0010` | `SEC-EXC-4092` | **Recalled (`True`)** | Evicted / Lost (`False`) | 332 |
-| `architectural_decision` | `turn-0018` | `ADR-014` | **Recalled (`True`)** | Evicted / Lost (`False`) | 319 |
-| `compliance_residency` | `turn-0026` | `eu-central-1` | **Recalled (`True`)** | Evicted / Lost (`False`) | 375 |
-| `capacity_limit` | `turn-0034` | `4,500 WCU` | **Recalled (`True`)** | Evicted / Lost (`False`) | 385 |
-| `financial_guardrail` | `turn-0042` | `$2,500` | **Recalled (`True`)** | Evicted / Lost (`False`) | 327 |
-| `kms_rotation` | `turn-0050` | `90 days` | **Recalled (`True`)** | Evicted / Lost (`False`) | 375 |
-| `incident_escalation` | `turn-0057` | `850ms` | **Recalled (`True`)** | Evicted / Lost (`False`) | 380 |
+- **Prompts and tool outputs leak regulated PII and secrets to external model APIs:** Support tickets and logs routinely contain SSNs, AWS access keys, credit card numbers, and emails. Replacing sensitive spans with typed placeholders (`<PII:SSN_001>`, `<PII:AWS_KEY_001>`) prior to outbound LLM calls—and restoring values only for authorized downstream tools—redacts **360/360** PII spans while blocking **40/40** prompt-injection payloads at a **0%** false-positive rate.
+- **Sub-agents inherit overly broad permissions from parent agents:** When a coordinator delegates a subtask, passing raw API credentials lets a sub-agent invoke destructive tools or exceed spend limits. Scoping each delegated token (`HMAC-SHA256`) to a subset of allowed tools, AWS ARN prefixes, USD budgets, and TTLs blocks **23/23** privilege-escalation attempts and holds high-risk writes (`DELETE`, `IAM_MUTATE`, `WIRE_TRANSFER`, `PROD_DEPLOY`) for human approval.
+- **Sliding-window chat truncation drops early constraints in long sessions:** Standard FIFO token windows evict early SLA, compliance, or budget instructions once a session passes ~20 turns. Compacting evicted turns into indexed session summaries retains **100%** key-fact recall across 65-turn sessions (`0%` with a naive FIFO window) while using **80.7%** fewer context tokens (**5.17x** reduction).
+- **Repeated operational queries burn frontier-model latency and budget:** Routing routine queries to fast models (`nova-micro` / `gpt-4o-mini`) behind a tenant-scoped semantic cache cuts gateway inference spend by **89.6%** and reduces mean latency by **90.6%** (`920 ms -> 86.8 ms` at an **84.0%** cache hit rate).
 
 ---
 
-## Repository Structure
+## How It Works
 
-```text
-agent-guard-core/
-├── .github/workflows/
-│   └── ci-security-eval.yml       # Automated test + zero-trust/recall release gates
-├── agent_guard/
-│   ├── __init__.py                # Public package exports
-│   ├── identity_delegation.py     # HMAC-SHA256 capability tokens, A2A scope attenuation, JIT proxy, SHA-256 audit log
-│   ├── pii_firewall.py            # Pre-context PII tokenization, selective tool re-hydration, prompt-injection firewall
-│   ├── memory_mcp.py              # 3-Tier Hierarchical Memory MCP server (Working -> Episodic -> Semantic) & stress test
-│   ├── model_gateway.py           # Fast/Reasoning router, tenant-isolated semantic cache, token bucket & cost kill-switch
-│   ├── llm_client.py              # Real Multi-Provider GuardedLLMClient (Anthropic, OpenAI, Gemini, Bedrock)
-│   └── cli.py                     # Reproducible benchmark runner generating benchmarks/latest_results.json
-├── benchmarks/
-│   ├── latest_results.json        # Latest measured benchmark telemetry
-│   └── live_llm_traces.json       # Captured dual-model production traces (claude-opus-5-5 & gpt-4o-mini)
-├── docs/
-│   ├── index.html                 # Interactive GitHub Pages web app & 7-hop Live Trace Replay Player
-│   ├── architecture.svg           # Excalidraw-style hand-drawn architecture diagram
-│   └── architecture.excalidraw    # Editable Excalidraw scene source
-├── tests/
-│   └── test_agent_guard.py        # 20 comprehensive unit tests across all subsystems
-├── pyproject.toml                 # Zero-dependency standard-library Python package configuration
-└── README.md
+```mermaid
+flowchart LR
+    Req["Incoming Agent / API Request"] --> Auth["Scoped HMAC-SHA256 Token Check\n& Human Approval Gate"]
+    Auth --> Redact["PII Redactor & Injection Filter\n(<PII:SSN_001>, 0% FPR)"]
+    Redact --> Mem["Session Memory Compactor\n(Pinned + Summary + TF-IDF Index)"]
+    Mem --> GW["Semantic Cache & Model Router\n(Rate Limit + USD Budget Cap)"]
+    GW --> Audit["Hash-Chained SHA-256 Audit Log"]
 ```
 
+1. **Scoped Auth Tokens & Human Approval Gate (`agent_guard/identity_delegation.py`)**  
+   Issues `HMAC-SHA256` signed permission tokens binding user identity, parent agent ID, allowed tool names, AWS resource ARN patterns, USD spend cap, and expiration timestamp. Child tokens can only narrow (never widen) their parent token's permissions; high-risk operations pause in `PENDING_JIT_APPROVAL` until signed by an approver, and every decision is appended to a `SHA-256` hash-chained audit log.
+
+2. **Outbound PII Redactor & Prompt-Injection Filter (`agent_guard/pii_firewall.py`)**  
+   Detects and replaces 6 sensitive data classes (`SSN`, `AWS_ACCESS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, `PATIENT_MRN`) with deterministic placeholders before context assembly, selectively restoring permitted fields per tool ACL. Screens untrusted inputs for role-delimiter spoofing, Base64-encoded instruction overrides, and data-exfiltration URLs.
+
+3. **Multi-Turn Session Memory Server (`agent_guard/memory_mcp.py`)**  
+   Exposes MCP `list_tools` / `call_tool` endpoints combining a token-budgeted active window (pinning system rules and tool schemas), automatic summarization of evicted turns with recency weighting, and a hybrid TF-IDF + entity index that retrieves exact turn citations on demand.
+
+4. **Semantic Cache & Model Router (`agent_guard/model_gateway.py`, `agent_guard/llm_client.py`)**  
+   Checks a tenant-isolated semantic similarity cache before model dispatch, enforces per-tenant token-bucket rate limits and runaway-loop circuit breakers, routes routine classifications to low-cost fast models while escalating complex multi-step requests, and enforces hard USD spend limits across Bedrock, Anthropic, OpenAI, and Gemini backends.
+
 ---
 
-## Quickstart & Verification
+## Benchmark Results
 
-Requires **Python 3.11+** (tested on **Python 3.14.6**). Uses the Python standard library exclusively so all cryptographic verification, TF-IDF vector indexing, PII tokenization, and benchmark harnesses run deterministically with **zero external API keys**.
+Reproducible out-of-the-box via `python3 -m agent_guard.cli` (saved in `benchmarks/latest_results.json`):
+
+| Subsystem | Metric | Measured Result | Baseline / Notes |
+| :--- | :--- | :---: | :--- |
+| **PII & Secret Redaction** | Regulated Spans Redacted Prior to Model Call | **360 / 360 (100.0%)** | 60 multi-entity documents (`SSN`, `AWS_KEY`, `CARD`, `EMAIL`, `PHONE`, `MRN`) |
+| **Prompt-Injection Filter** | Malicious Payloads Blocked / Benign False Positives | **40 / 40 (100.0%)** / **0.0% FPR** | Tested against 40 injection payloads + 20 benign controls |
+| **Scoped Sub-Agent Auth** | Privilege-Escalation Attempts Blocked | **23 / 23 (100.0%)** | Blocks wildcard tool widening, ARN escape, budget/TTL inflation & signature tampering |
+| **Human Approval & Audit Log** | High-Risk Writes Gated & Hash Links Verified | **4 / 4 gated** · **37 / 37 links valid** | `DELETE`, `IAM_MUTATE`, `WIRE_TRANSFER`, `PROD_DEPLOY` |
+| **Session Memory Compaction** | Key-Fact Recall@4 Across 65 Turns (`58` Evictions) | **100.0%** (`8/8` facts) | vs. **0.0%** naive FIFO window; **-80.7%** context tokens (`1,819 -> 352`, **5.17x**) |
+| **Semantic Cache & Router** | Gateway Spend & Mean Latency Reduction | **-89.6% spend** / **-90.6% latency** | `920.0 ms -> 86.8 ms` mean latency (**84.0%** semantic cache hit rate) |
+
+---
+
+## Quickstart
+
+Requires Python 3.11+ with zero external package dependencies:
 
 ```bash
-# 1. Run all 20 unit tests
+# 1. Run all 20 unit and security tests
 python3 -m unittest discover -s tests -v
 
-# 2. Run the full 4-suite benchmark CLI and regenerate benchmarks/latest_results.json
+# 2. Run the full benchmark suite and regenerate benchmarks/latest_results.json
 python3 -m agent_guard.cli
 ```
