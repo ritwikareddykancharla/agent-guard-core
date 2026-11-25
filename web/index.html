@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentGuard — AI Security Firewall, VPC PII Redactor &amp; Bedrock Posture Auto-Patcher</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Top Security Control Plane Header -->
+  <header class="topbar">
+    <div class="brand-cluster">
+      <div class="shield-badge" aria-hidden="true">AG</div>
+      <div>
+        <div class="brand-row">
+          <span class="brand-title">AgentGuard</span>
+          <span class="brand-tag">Zero-Trust AI Security &amp; Posture Automation</span>
+        </div>
+        <div class="brand-sub">Reversible VPC PII Vault &middot; Prompt-Injection Firewall &middot; Scoped HMAC-SHA256 A2A Tokens &middot; Bedrock Auto-Patcher</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="live-status-pill" id="backend-health-pill">
+        <span class="pulse-dot"></span>
+        <span id="backend-health-text">Connecting to /api/health...</span>
+      </div>
+      <button type="button" class="btn-ghost" id="btn-open-arch">&#9881; CloudFront + OAC Architecture</button>
+      <button type="button" class="btn-ghost" id="btn-reset-demo">&#8635; Reset Lab</button>
+    </div>
+  </header>
+
+  <!-- Verified Security Benchmark Telemetry Strip -->
+  <section class="kpi-strip" aria-label="Verified Security Benchmarks">
+    <div class="kpi-cell">
+      <span class="kpi-label">VPC Outbound PII Redaction</span>
+      <strong class="kpi-val emerald">360 / 360 (100%)</strong>
+      <span class="kpi-note">SSN &middot; AWS Key &middot; Card &middot; Email &middot; MRN</span>
+    </div>
+    <div class="kpi-cell">
+      <span class="kpi-label">Indirect Prompt Injection Block</span>
+      <strong class="kpi-val crimson">40 / 40 Blocked</strong>
+      <span class="kpi-note">0.0% False-Positive Rate</span>
+    </div>
+    <div class="kpi-cell">
+      <span class="kpi-label">Confused-Deputy A2A Escalation</span>
+      <strong class="kpi-val amber">23 / 23 Rejected</strong>
+      <span class="kpi-note">HMAC-SHA256 Monotonic Scopes</span>
+    </div>
+    <div class="kpi-cell">
+      <span class="kpi-label">Semantic Cache Speedup &amp; Spend</span>
+      <strong class="kpi-val indigo">920 ms &rarr; 86.8 ms</strong>
+      <span class="kpi-note">-89.6% Gateway Inference Cost</span>
+    </div>
+    <div class="kpi-cell">
+      <span class="kpi-label">Attribution Audit Chain</span>
+      <strong class="kpi-val emerald" id="kpi-audit-chain">SHA-256 Verified</strong>
+      <span class="kpi-note" id="kpi-audit-count">Tamper-evident hash links</span>
+    </div>
+  </section>
+
+  <!-- Main 3-Column Security Control Plane -->
+  <main class="control-grid">
+    <!-- LEFT RAIL: 1-Click Guided Red-Team & Posture Workflows + Active Capability Token -->
+    <aside class="left-rail">
+      <div class="card">
+        <div class="card-eyebrow">1-Click Guided Security Workflows</div>
+        <p class="rail-lead">Click any live attack or compliance workflow to inspect how AgentGuard enforces Zero-Trust boundaries:</p>
+
+        <div class="scenario-stack">
+          <button type="button" class="workflow-card active" id="wf-clean-pii">
+            <div class="wf-top">
+              <span class="wf-badge badge-emerald">VPC PII + Cache</span>
+              <span class="wf-step">Workflow 1</span>
+            </div>
+            <div class="wf-title">Clean Billing Support &amp; Semantic Cache Hit</div>
+            <div class="wf-desc">Redacts <code>SSN / Email / AWS Key</code> &rarr; <code>[PII_SSN_1]</code> before leaving VPC, calls Bedrock Nova, then proves instant Semantic Cache HIT (<code>-89.6%</code> cost).</div>
+          </button>
+
+          <button type="button" class="workflow-card" id="wf-rag-injection">
+            <div class="wf-top">
+              <span class="wf-badge badge-crimson">40/40 Blocked</span>
+              <span class="wf-step">Workflow 2</span>
+            </div>
+            <div class="wf-title">Indirect Prompt Injection in Retrieved Doc</div>
+            <div class="wf-desc">Detects <code>IGNORE PREVIOUS INSTRUCTIONS</code> + covert exfiltration beacon inside untrusted RAG context and halts execution pre-LLM.</div>
+          </button>
+
+          <button type="button" class="workflow-card" id="wf-confused-deputy">
+            <div class="wf-top">
+              <span class="wf-badge badge-amber">23/23 Rejected</span>
+              <span class="wf-step">Workflow 3</span>
+            </div>
+            <div class="wf-title">Confused-Deputy Sub-Agent Privilege Escalation</div>
+            <div class="wf-desc">Sub-agent holding <code>read:orders</code> HMAC-SHA256 token attempts <code>iam:CreateAccessKey</code> &amp; <code>refund:issue_wire</code> &rarr; cryptographically denied.</div>
+          </button>
+
+          <button type="button" class="workflow-card" id="wf-posture-autopatch">
+            <div class="wf-top">
+              <span class="wf-badge badge-violet">Bedrock Nova</span>
+              <span class="wf-step">Workflow 4</span>
+            </div>
+            <div class="wf-title">Service Security Posture Audit &amp; Auto-Patcher</div>
+            <div class="wf-desc">Audits agent microservice config for wildcard IAM, unpinned tool scopes &amp; missing PII egress filter &rarr; generates &amp; applies patch via <code>us.amazon.nova-lite-v1:0</code>.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active A2A Capability Token Card -->
+      <div class="card token-inspector-card">
+        <div class="card-eyebrow">Active A2A Capability Token</div>
+        <div class="token-role-pill" id="active-token-badge">Attenuated A2A Child Token</div>
+        <div class="token-kv">
+          <span>Agent Identity</span>
+          <code id="tok-agent-id">agent:order-lookup-subagent</code>
+        </div>
+        <div class="token-kv">
+          <span>Chain of Custody</span>
+          <div class="custody-chain" id="tok-custody"></div>
+        </div>
+        <div class="token-kv">
+          <span>Allowed Tool Scopes</span>
+          <div class="scope-chips" id="tok-tools"></div>
+        </div>
+        <div class="token-kv">
+          <span>Pinned AWS ARNs</span>
+          <div class="arn-list" id="tok-arns"></div>
+        </div>
+        <div class="token-kv">
+          <span>Compact HMAC-SHA256</span>
+          <code class="sig-code" id="tok-sig">Loading...</code>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE: Firewall Inspector & Service Posture Auto-Patcher -->
+    <section class="center-stage">
+      <!-- Mode Switch Tabs -->
+      <div class="mode-tabs" role="tablist">
+        <button type="button" class="mode-tab active" id="tab-firewall" data-view="firewall">
+          &#128737; Prompt &amp; Tool Call Firewall Inspector
+        </button>
+        <button type="button" class="mode-tab" id="tab-posture" data-view="posture">
+          &#9889; Service Security Posture Audit &amp; Auto-Patcher (Bedrock Nova)
+        </button>
+      </div>
+
+      <!-- VIEW 1: PROMPT & TOOL CALL FIREWALL INSPECTOR -->
+      <div id="view-firewall" class="stage-view">
+        <!-- 4-Gate Live Security Pipeline -->
+        <div class="pipeline-bar" aria-label="4-Gate Security Pipeline">
+          <div class="gate-node" id="gate-card-1">
+            <div class="gate-step">GATE 1 &middot; VPC EGRESS</div>
+            <div class="gate-name">Reversible PII Vault</div>
+            <div class="gate-status" id="gate-status-1">Ready</div>
+          </div>
+          <div class="gate-arrow">&rarr;</div>
+          <div class="gate-node" id="gate-card-2">
+            <div class="gate-step">GATE 2 &middot; RAG / INPUT</div>
+            <div class="gate-name">Prompt-Injection Firewall</div>
+            <div class="gate-status" id="gate-status-2">Ready</div>
+          </div>
+          <div class="gate-arrow">&rarr;</div>
+          <div class="gate-node" id="gate-card-3">
+            <div class="gate-step">GATE 3 &middot; AI GATEWAY</div>
+            <div class="gate-name">Semantic Cache &amp; Bedrock</div>
+            <div class="gate-status" id="gate-status-3">Ready</div>
+          </div>
+          <div class="gate-arrow">&rarr;</div>
+          <div class="gate-node" id="gate-card-4">
+            <div class="gate-step">GATE 4 &middot; ZERO-TRUST</div>
+            <div class="gate-name">Scoped HMAC &amp; JIT Proxy</div>
+            <div class="gate-status" id="gate-status-4">Ready</div>
+          </div>
+        </div>
+
+        <!-- Interactive Firewall Input Composer -->
+        <div class="card composer-card">
+          <div class="composer-grid">
+            <div class="field-group">
+              <label for="input-prompt">Outbound User / Support Ticket Prompt (Inside VPC)</label>
+              <textarea id="input-prompt" rows="3" placeholder="Enter customer ticket or prompt containing SSN, email, credit card, or AWS access keys..."></textarea>
+            </div>
+            <div class="field-group">
+              <label for="input-rag">Retrieved RAG Document / Tool Output (Untrusted Context)</label>
+              <textarea id="input-rag" rows="3" placeholder="Optional retrieved knowledge-base snippet or external webhook payload to screen for indirect prompt injection..."></textarea>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <div class="field-col">
+              <label for="select-token">Delegated Caller Capability Token</label>
+              <select id="select-token"></select>
+            </div>
+            <div class="field-col">
+              <label for="select-tool">Proposed Downstream Tool Call</label>
+              <select id="select-tool">
+                <option value="billing:lookup_invoice">billing:lookup_invoice (Authorized: EMAIL, CARD)</option>
+                <option value="read:orders">read:orders (Authorized: EMAIL, PHONE)</option>
+                <option value="iam:CreateAccessKey">iam:CreateAccessKey (Escalation Attack!)</option>
+                <option value="refund:issue_wire">refund:issue_wire (Unauthorized Sub-Agent Wire!)</option>
+                <option value="refund:WIRE_TRANSFER">refund:WIRE_TRANSFER (High-Risk JIT Human Gate)</option>
+                <option value="">None (Prompt &amp; LLM Inspection Only)</option>
+              </select>
+            </div>
+            <div class="field-col">
+              <label for="input-arn">Target AWS Resource ARN</label>
+              <input type="text" id="input-arn" value="arn:aws:payments:us-west-2:796330847946:invoice/INV-2026-8841" />
+            </div>
+          </div>
+
+          <div class="composer-actions">
+            <button type="button" class="btn-primary" id="btn-run-firewall">
+              &#9654; Inspect &amp; Execute Through AgentGuard
+            </button>
+            <button type="button" class="btn-secondary" id="btn-repeat-cache">
+              &#9889; Repeat Request (Prove Semantic Cache HIT &middot; -89.6% Cost)
+            </button>
+            <button type="button" class="btn-outline-amber" id="btn-trigger-jit">
+              &#128274; Test High-Risk WIRE_TRANSFER Human JIT Gate
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Verdict Banner -->
+        <div id="verdict-banner" class="verdict-banner"></div>
+
+        <!-- Side-by-Side VPC Boundary Redaction Diff -->
+        <div class="diff-split">
+          <div class="card boundary-card vpc-inside">
+            <div class="boundary-header">
+              <span class="boundary-pill pill-inside">INSIDE CUSTOMER VPC</span>
+              <span class="boundary-meta" id="raw-char-meta">Raw Inbound Context</span>
+            </div>
+            <pre class="boundary-pre" id="vpc-raw-view">Select a workflow or click Inspect to trace VPC PII tokenization.</pre>
+          </div>
+
+          <div class="card boundary-card vpc-outside">
+            <div class="boundary-header">
+              <span class="boundary-pill pill-outside">EGRESS PAYLOAD TO BEDROCK LLM</span>
+              <span class="boundary-meta" id="redacted-count-meta">0 Raw Secrets Exposed</span>
+            </div>
+            <pre class="boundary-pre" id="vpc-sanitized-view">Tokenized payload ([PII_SSN_1], [PII_AWS_KEY_1]) will appear here.</pre>
+            <div class="pii-vault-chips" id="pii-vault-chips"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Dual Cards: Semantic Cache / Bedrock Output + Scoped Tool Authorization -->
+        <div class="diff-split">
+          <div class="card">
+            <div class="card-eyebrow">Gate 2 &amp; 3 &middot; Threat Signatures, Semantic Cache &amp; Bedrock Nova</div>
+            <div id="llm-cache-panel" class="result-body"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-eyebrow">Gate 4 &middot; HMAC-SHA256 Tool Scope &amp; Selective PII Re-Hydration</div>
+            <div id="tool-auth-panel" class="result-body"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: SERVICE SECURITY POSTURE AUDIT & AUTO-PATCHER -->
+      <div id="view-posture" class="stage-view hidden">
+        <div class="card posture-hero-card">
+          <div class="posture-hero-top">
+            <div>
+              <div class="card-eyebrow">Automated Service Security Posture &amp; Remediation</div>
+              <h2 class="posture-heading">Scan Agent Microservice Configs &amp; Generate Ready-to-Apply Patches</h2>
+              <p class="posture-sub">Detects wildcard IAM resources (<code>*</code>), unpinned sub-agent tool scopes, missing VPC PII egress redaction, disabled prompt-injection filters, and missing human JIT gates — then synthesizes a hardened config &amp; unified diff with <strong>Amazon Bedrock (<code>us.amazon.nova-lite-v1:0</code>)</strong>.</p>
+            </div>
+            <div class="score-dial" id="posture-score-dial">
+              <span class="score-num" id="posture-score-num">--</span>
+              <span class="score-cap" id="posture-score-status">SELECT SERVICE</span>
+            </div>
+          </div>
+
+          <!-- Service Selector Strip -->
+          <div class="service-cards" id="service-selector-list"></div>
+
+          <div class="posture-editor-split">
+            <div class="editor-col">
+              <label for="posture-config-editor" class="editor-label">Target Microservice Security Manifest (Editable JSON)</label>
+              <textarea id="posture-config-editor" class="code-textarea" rows="15" spellcheck="false"></textarea>
+              <div class="posture-btn-row">
+                <button type="button" class="btn-primary" id="btn-run-posture-audit">
+                  &#128269; Audit Posture &amp; Generate Patch (Bedrock Nova)
+                </button>
+                <button type="button" class="btn-emerald" id="btn-apply-autopatch" disabled>
+                  &#10003; Apply Security Auto-Patch &amp; Re-Verify (100/100)
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-col">
+              <div class="editor-label">Generated Least-Privilege Unified Patch Diff</div>
+              <pre id="posture-diff-view" class="diff-pre">Click "Audit Posture &amp; Generate Patch" to synthesize the unified remediation diff.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="diff-split">
+          <div class="card">
+            <div class="card-eyebrow">Amazon Bedrock (us.amazon.nova-lite-v1:0) Security Engineering Brief</div>
+            <div id="posture-bedrock-brief" class="result-body">Run an audit to generate a live Bedrock Nova vulnerability &amp; blast-radius analysis.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-eyebrow">Detected Posture Findings (6 Zero-Trust Controls)</div>
+            <div id="posture-findings-list" class="findings-stack"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT RAIL: JIT Approval Queue & Tamper-Evident SHA-256 Hash-Chained Audit Log -->
+    <aside class="right-rail">
+      <div class="card jit-card">
+        <div class="card-eyebrow">Human-in-the-Loop JIT Approval Gate</div>
+        <div id="jit-queue-box" class="jit-list">
+          <div class="empty-note">No suspended <code>WIRE_TRANSFER</code> / <code>IAM_MUTATE</code> requests pending sign-off.</div>
+        </div>
+      </div>
+
+      <div class="card audit-card">
+        <div class="audit-header">
+          <div>
+            <div class="card-eyebrow">SHA-256 Hash-Chained Audit Log</div>
+            <div class="audit-integrity-badge" id="audit-integrity-pill">&#10003; Genesis-to-Head Verified</div>
+          </div>
+        </div>
+        <div id="audit-entries-list" class="audit-list"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Architecture Modal -->
+  <div class="modal-backdrop hidden" id="arch-modal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>AgentGuard — Production CloudFront + Private S3 OAC + Bedrock Architecture</h3>
+        <button type="button" class="btn-ghost" id="btn-close-arch">&#10005; Close</button>
+      </div>
+      <div class="modal-body">
+        <img src="/architecture.svg" alt="AgentGuard AWS CloudFront Architecture Diagram" class="arch-img" />
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
