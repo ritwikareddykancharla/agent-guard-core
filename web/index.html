@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AgentGuard &amp; ContextCore — Zero-Trust AI Agent Identity, PII Firewall &amp; 3-Tier Memory MCP</title>
-<meta name="description" content="Interactive Zero-Trust AI Agent Identity, Scoped A2A Delegation, JIT Approval Proxy, Pre-Context PII Firewall, 3-Tier Hierarchical Memory MCP Server, and Multi-Model Gateway.">
+<title>AgentGuard — Keeps AI Agents From Leaking Customer PII, Escalating Permissions, or Forgetting Rules</title>
+<meta name="description" content="AgentGuard narrows sub-agent permissions at every handoff, redacts sensitive customer PII before prompts reach external models, and preserves critical rules across long sessions.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Martian+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap">
 <style>
 /* Signature ritwikareddykancharla.github.io design system:
@@ -71,25 +71,25 @@ p{margin:0}
 .badge.cobalt{background:var(--cobalt-soft);color:var(--cobalt);border-color:var(--cobalt)}
 
 /* Hero */
-.hero{padding:52px 0 48px;border-bottom:1px solid var(--rule)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:44px;align-items:start}
-.kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;font:500 11px var(--mono);color:var(--soft);text-transform:uppercase;letter-spacing:.12em}
-.kicker i{flex:none;width:9px;height:9px;background:var(--accent)}
-h1{margin:0;font-size:clamp(2rem,3.3vw,2.85rem);line-height:1.06;letter-spacing:-.04em;font-weight:800}
-.lede{margin:18px 0 0;font:400 1.24rem/1.55 var(--read);color:var(--body)}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero{padding:44px 0 42px;border-bottom:1px solid var(--rule)}
+.hero-top-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.kicker{display:inline-flex;align-items:center;gap:10px;margin:0;padding:5px 11px;border:1.5px solid var(--ink);background:var(--accent-soft);color:var(--accent);font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;box-shadow:2px 2px 0 var(--ink)}
+.runtime-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 11px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font:600 11px var(--mono);box-shadow:2px 2px 0 var(--ink)}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+h1{margin:0;font-size:clamp(1.95rem,3.3vw,2.75rem);line-height:1.1;letter-spacing:-.035em;font-weight:800;max-width:34ch}
+.lede{margin:16px 0 0;font:400 1.22rem/1.62 var(--read);color:var(--body);max-width:72ch}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 
-.hero-card{background:var(--card);border:1px solid var(--ink);box-shadow:8px 8px 0 var(--accent);padding:22px}
-.hero-card h3{margin:0 0 12px;font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
-.arch-flow{display:flex;flex-direction:column;gap:8px;font:400 11.5px var(--mono)}
-.arch-step{padding:9px 12px;border:1px solid var(--rule);background:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:8px}
-.arch-step b{color:var(--ink);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
+.stat-card{background:var(--card);border:1.5px solid var(--ink);border-top:5px solid var(--accent);box-shadow:4px 4px 0 var(--ink);padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+.stat-card b{font:700 1.38rem/1.1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.stat-card strong{font-size:.86rem;line-height:1.35;color:var(--ink);font-weight:800}
+.stat-card span{font:400 10.8px/1.45 var(--mono);color:var(--soft)}
 
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:42px;border-top:2px solid var(--ink)}
-.stats div{display:flex;flex-direction:column;gap:6px;padding:18px 20px 4px;border-left:1px dashed var(--rule)}
-.stats div:first-child{padding-left:0;border-left:0}
-.stats b{font-size:clamp(1.3rem,2vw,1.65rem);line-height:1.05;letter-spacing:-.04em;font-weight:800;font-variant-numeric:tabular-nums}
-.stats span{font:400 11px/1.55 var(--mono);color:var(--soft)}
+.pipeline-bar{margin-top:18px;background:#0e1a2b;color:#f2f5fa;border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--accent);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pipe-step{display:flex;align-items:center;gap:8px;font-size:.83rem;font-weight:600}
+.pipe-num{font:700 10.5px var(--mono);background:var(--accent);color:#ffffff;padding:2px 7px;border:1px solid #ffffff}
+.pipe-arrow{font:700 13px var(--mono);color:#fda4af}
 
 /* Sections */
 .sec{padding:56px 0 0}
@@ -98,7 +98,7 @@ h1{margin:0;font-size:clamp(2rem,3.3vw,2.85rem);line-height:1.06;letter-spacing:
 .sec-head h2{margin:0;font-size:2rem;line-height:1.08;letter-spacing:-.035em;font-weight:800}
 .sec-head p{font:400 1.08rem/1.5 var(--read);color:var(--body)}
 
-/* 30-Second Visual Walkthrough Grid */
+/* Problem Cards Grid */
 .pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .pillar-card{background:var(--card);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--accent);padding:20px;display:flex;flex-direction:column;gap:10px}
 .pillar-num{font:600 11px var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
@@ -188,8 +188,7 @@ table.brutal-table th{background:var(--paper);color:var(--ink);font-weight:600;t
 footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px var(--mono);color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
 @media (max-width:980px){
-  .hero-grid,.sec-head,.pillars,.grid-2,.grid-3,.stats,.hop-scrubber{grid-template-columns:1fr}
-  .stats div{border-left:0;border-top:1px dashed var(--rule);padding-left:0}
+  .sec-head,.pillars,.grid-2,.grid-3,.stats,.hop-scrubber{grid-template-columns:1fr}
   .site nav{display:none}
 }
 .plain-callout code,.worked-step code,.layer-plain code,.layer-hood code,.sandbox-guide code{font:500 .88em var(--mono);padding:1px 5px;border-radius:2px}
@@ -201,15 +200,15 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
   <div class="bar">
     <a class="brand" href="#top">
       <span class="mark">AG</span>
-      <span>AgentGuard &amp; ContextCore</span>
+      <span>AgentGuard</span>
     </a>
     <nav aria-label="Primary">
       <a href="#problem-statement">Problem</a>
       <a href="#architecture">Architecture</a>
       <a href="#implementation">Implementation</a>
       <a href="#design-tradeoffs">Trade-Offs</a>
-      <a href="#trace-player">Trace Scrubber</a>
-      <a href="#sandboxes">Interactive Studio</a>
+      <a href="#trace-player">Trace Replay</a>
+      <a href="#sandboxes">Live Demo</a>
       <a href="#benchmarks">Benchmarks</a>
       <a href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">GitHub Repo ↗</a>
     </nav>
@@ -223,13 +222,13 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 <nav class="toc-bar" id="stickyToc" aria-label="Jump to Section Table of Contents">
   <div class="wrap toc-inner">
     <span class="toc-label">Jump To:</span>
-    <a class="toc-link active" href="#problem-statement" data-toc-sec="problem-statement">§01 · Problem Statement</a>
-    <a class="toc-link" href="#architecture" data-toc-sec="architecture">§02 · System Architecture</a>
-    <a class="toc-link" href="#implementation" data-toc-sec="implementation">§03 · Implementation</a>
-    <a class="toc-link" href="#design-tradeoffs" data-toc-sec="design-tradeoffs">§04 · Design Trade-Offs</a>
-    <a class="toc-link" href="#trace-player" data-toc-sec="trace-player">§05 · Live Trace Scrubber</a>
-    <a class="toc-link" href="#sandboxes" data-toc-sec="sandboxes">§06 · Interactive Studio</a>
-    <a class="toc-link" href="#benchmarks" data-toc-sec="benchmarks">§07 · Benchmarks</a>
+    <a class="toc-link active" href="#problem-statement" data-toc-sec="problem-statement">01 · Problem</a>
+    <a class="toc-link" href="#architecture" data-toc-sec="architecture">02 · Architecture</a>
+    <a class="toc-link" href="#implementation" data-toc-sec="implementation">03 · Implementation</a>
+    <a class="toc-link" href="#design-tradeoffs" data-toc-sec="design-tradeoffs">04 · Trade-Offs</a>
+    <a class="toc-link" href="#trace-player" data-toc-sec="trace-player">05 · Trace Replay</a>
+    <a class="toc-link" href="#sandboxes" data-toc-sec="sandboxes">06 · Live Demo</a>
+    <a class="toc-link" href="#benchmarks" data-toc-sec="benchmarks">07 · Benchmarks</a>
   </div>
 </nav>
 
@@ -237,138 +236,130 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <p class="kicker"><i></i> Zero-Trust AI Agent Governance · <span id="cfGuardHealth">AWS CloudFront + S3 (OAC) + Bedrock Nova Live</span></p>
-          <h1>Cryptographic Agent Delegation, Pre-Context PII Firewall &amp; Zero-Loss Hierarchical Memory.</h1>
-          <p class="lede">
-            Enterprise AI agents fail in production when sub-agents escalate privileges during Agent-to-Agent (A2A) handoffs, raw customer PII leaks into LLM context windows, or sliding-window truncation forgets early SLA and security constraints. <b>AgentGuard &amp; ContextCore</b> solves all four layers in a zero-dependency Python 3.14 runtime verified live on <code>claude-opus-5-5</code> and <code>gpt-4o-mini</code>.
-          </p>
-          <div class="actions">
-            <a class="btn primary" href="#trace-player">🎬 Watch Live Dual-Model Trace Replay ↓</a>
-            <a class="btn" href="#sandboxes">Launch 4 Interactive Sandboxes ↓</a>
-            <a class="btn" href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">View Source on GitHub ↗</a>
-          </div>
+      <div class="hero-top-row">
+        <p class="kicker">AI Security &amp; Privacy · Built for AWS Security Automation</p>
+        <div class="runtime-pill">
+          <span class="pulse-dot"></span>
+          <span id="cfGuardHealth">Live on AWS · Powered by Amazon Bedrock</span>
         </div>
+      </div>
 
-        <aside class="hero-card" aria-label="Request Lifecycle">
-          <h3>End-to-End Guarded Request Pipeline</h3>
-          <div class="arch-flow">
-            <div class="arch-step"><span>1. Human → Root Agent</span><b>HMAC-SHA256 Token</b></div>
-            <div class="arch-step"><span>2. A2A Sub-Agent Handoff</span><b>Monotonic Attenuation</b></div>
-            <div class="arch-step"><span>3. Pre-Context Firewall</span><b>&lt;PII:SSN_001&gt; + Quarantine</b></div>
-            <div class="arch-step"><span>4. ContextCore MCP</span><b>Working → Episodic → Semantic</b></div>
-            <div class="arch-step"><span>5. Multi-Model Gateway</span><b>claude-opus-5-5 | gpt-4o-mini</b></div>
-            <div class="arch-step"><span>6. High-Risk Tool Gate</span><b>PENDING_JIT_APPROVAL + SHA-256</b></div>
-          </div>
-        </aside>
+      <h1>AgentGuard — Keeps AI Agents From Leaking Customer PII, Escalating Permissions, or Forgetting Rules</h1>
+      <p class="lede">
+        Multi-agent workflows break down when sub-agents inherit broad permissions, send private customer data to external models, or drop early safety rules during long chats. AgentGuard narrows permissions at each handoff, redacts sensitive data before prompts leave, and preserves rules in tiered memory.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#sandboxes">▶ Try the Live Demo ↓</a>
+        <a class="btn" href="#trace-player">Watch Trace Replay ↓</a>
+        <a class="btn" href="#architecture">See How It Works ↓</a>
+        <a class="btn" href="#benchmarks">View Test Results ↓</a>
       </div>
 
       <div class="stats" role="region" aria-label="Measured Benchmark Highlights">
-        <div>
-          <b>100% (23/23)</b>
-          <span>A2A Privilege Escalation &amp; Token Tampering Blocked</span>
+        <div class="stat-card">
+          <b>23 / 23 Blocked</b>
+          <strong>Stops Sub-Agent Permission Escalation</strong>
+          <span>Signed capability tokens only narrow access; 4/4 risky actions held for humans</span>
         </div>
-        <div>
-          <b>360 / 360</b>
-          <span>Pre-Context PII Entities Redacted (0.0% False Positives)</span>
+        <div class="stat-card">
+          <b>360 / 360 Redacted</b>
+          <strong>Strips Customer PII Before Prompts</strong>
+          <span>0.0% false positives · 40/40 prompt-injection attempts quarantined</span>
         </div>
-        <div>
-          <b>100% vs 0%</b>
-          <span>3-Tier Memory Needle Recall@4 vs Naive FIFO (5.17x Compression)</span>
+        <div class="stat-card">
+          <b>100% vs. 0%</b>
+          <strong>Remembers Early Rules Over 65 Turns</strong>
+          <span>Tiered memory recalls 8/8 early rules in 352 tokens vs. 1,819 raw (5.17×)</span>
         </div>
-        <div>
+        <div class="stat-card">
           <b>89.6% Saved</b>
-          <span>Multi-Model Gateway Cost Reduction (86.8ms vs 920ms)</span>
+          <strong>Cuts Model Spend &amp; Halts Stuck Loops</strong>
+          <span>84% semantic cache hit rate · 86.8 ms mean latency vs. 920 ms baseline</span>
         </div>
+      </div>
+
+      <div class="pipeline-bar" role="region" aria-label="Request Pipeline">
+        <div class="pipe-step"><span class="pipe-num">01</span><span>Scrub PII &amp; Prompt Injections</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step"><span class="pipe-num">02</span><span>Load Rules &amp; Narrow Sub-Agent Token</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step"><span class="pipe-num">03</span><span>Route to Cache or Model</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step"><span class="pipe-num">04</span><span>Hold Risky Actions for Human Sign-Off</span></div>
       </div>
     </div>
   </section>
 
-  <!-- §01 · PROBLEM STATEMENT -->
+  <!-- §01 · PROBLEM -->
   <section class="sec" id="problem-statement">
     <div id="walkthrough"></div>
     <div class="wrap">
-      <span class="sec-kicker">§01 · Problem Statement</span>
+      <span class="sec-kicker">01 · Problem</span>
       <div class="sec-head">
-        <h2>Why Multi-Agent Systems Leak PII, Escalate Privileges &amp; Forget Guardrails</h2>
-        <p>Four production failure modes across AWS Applied AI Core Services, Luna GenAI Gateway, and Amazon Connect multi-agent architectures—and how AgentGuard &amp; ContextCore eliminates them.</p>
-      </div>
-
-      <div class="plain-callout">
-        <div style="font:600 11px var(--mono);color:#b01c30;text-transform:uppercase;margin-bottom:6px">💡 In Plain English — What Problem Does AgentGuard &amp; ContextCore Solve?</div>
-        <p>
-          Suppose a doctor or corporate treasurer asks an AI orchestrator to resolve a ticket, and that orchestrator delegates work to specialized sub-agents across 65 conversation turns. Without hard runtime boundaries, four bad things happen:
-          <b>(1) Confused-Deputy Escalation:</b> a sub-agent inherits broad admin permissions or approves a $25,000 wire transfer on its own;
-          <b>(2) Context-Window PII Leakage:</b> raw patient SSNs, credit cards, and AWS keys get sent straight to third-party LLM APIs alongside prompt-injection traps hidden inside logs;
-          <b>(3) Context Amnesia:</b> simple sliding-window truncation forgets a critical SLA or GDPR rule stated back in Turn 3 (<code>0.0%</code> FIFO recall); and
-          <b>(4) Runaway Spend:</b> sending every routine lookup to a slow reasoning model burns 10× your inference budget.
-        </p>
-        <p>
-          <b>AgentGuard &amp; ContextCore</b> wraps the entire lifecycle: cryptographic capability tokens narrow permissions at every Agent-to-Agent (A2A) hop (<b><code>23/23</code> escalations blocked</b>) and pause risky tools for human sign-off; a reversible pre-context firewall swaps PII for <code>&lt;PII:...&gt;</code> tokens (<b><code>360/360</code> redacted, <code>40/40</code> injections blocked, <code>0.0%</code> false positives</b>); a 3-tier memory MCP recalls early enterprise constraints at <b><code>100.0%</code> Recall@4</b> (<code>5.17×</code> compression); and a semantic-cached multi-model gateway cuts cost by <b><code>89.58%</code></b> (<code>86.8 ms</code> vs <code>920.0 ms</code>).
-        </p>
+        <h2>Problem</h2>
+        <p>Multi-agent systems face four concrete risks in production: over-scoped sub-agent permissions, customer data exposure in model prompts, dropped constraints across long sessions, and runaway inference spend.</p>
       </div>
 
       <div class="pillars">
         <article class="pillar-card">
-          <span class="pillar-num">Failure 01 · A2A Escalation</span>
-          <h3>Sub-Agent Scope Creep &amp; Unapproved Mutations</h3>
-          <p>Passing static API keys across multi-agent chains lets compromised sub-agents broaden tool wildcards, inflate USD budgets, or execute <code>WIRE_TRANSFER</code> and <code>PROD_DEPLOY</code> calls without human sign-off.</p>
+          <span class="pillar-num">01 · Sub-Agent Scope Creep</span>
+          <h3>Shared Roles Let Sub-Agents Escalate Access</h3>
+          <p>Passing static API keys across agent handoffs lets compromised sub-agents broaden tool wildcards, raise dollar limits, or trigger <code>WIRE_TRANSFER</code> and <code>PROD_DEPLOY</code> calls without human sign-off.</p>
         </article>
         <article class="pillar-card">
-          <span class="pillar-num">Failure 02 · PII &amp; Hijacks</span>
-          <h3>Raw PII Exposure &amp; Indirect Prompt Injection</h3>
-          <p>Feeding untrusted tickets or log snippets directly into LLM prompts leaks <code>SSN</code>, <code>PATIENT_MRN</code>, <code>CREDIT_CARD</code>, and <code>AKIA</code> keys while allowing ChatML/Base64 overrides to hijack tool calls.</p>
+          <span class="pillar-num">02 · PII &amp; Prompt Hijacks</span>
+          <h3>Untrusted Tickets Leak Secrets Into Model Prompts</h3>
+          <p>Feeding support tickets or log snippets straight into model prompts exposes <code>SSN</code>, <code>PATIENT_MRN</code>, <code>CREDIT_CARD</code>, and <code>AKIA</code> keys while allowing ChatML or Base64 overrides to hijack tool calls.</p>
         </article>
         <article class="pillar-card">
-          <span class="pillar-num">Failure 03 · FIFO Amnesia</span>
-          <h3>Sliding Windows Drop Early Enterprise Rules</h3>
-          <p>Under a tight 220-token working window across 65 turns, naive FIFO truncation loses <code>8/8</code> early SLA, GDPR residency, and KMS rotation constraints (<code>0.0%</code> recall).</p>
+          <span class="pillar-num">03 · Sliding-Window Dropouts</span>
+          <h3>FIFO Truncation Loses Early Compliance Rules</h3>
+          <p>Under a 220-token working window across 65 turns, simple FIFO truncation drops <code>8/8</code> early SLA, GDPR residency, and KMS rotation constraints (<code>0.0%</code> recall).</p>
         </article>
         <article class="pillar-card">
-          <span class="pillar-num">Failure 04 · Cost &amp; Loops</span>
-          <h3>Static Reasoning Spend &amp; Stuck Tool Loops</h3>
-          <p>Routing paraphrased or routine lookups to frontier reasoning models costs <code>$0.0750</code> per 100 requests at <code>920 ms</code> latency—and stuck agents burn quota repeating identical tool calls.</p>
+          <span class="pillar-num">04 · Spend &amp; Stuck Loops</span>
+          <h3>Static Reasoning Routing Wastes Budget</h3>
+          <p>Sending paraphrased or routine lookups to large reasoning models costs <code>$0.0750</code> per 100 requests at <code>920 ms</code> mean latency, and stuck agents burn quota repeating identical tool calls.</p>
         </article>
       </div>
 
       <div class="worked-example">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
           <div>
-            <span class="badge danger" style="margin-bottom:6px">Concrete End-to-End Worked Example</span>
-            <h3 style="margin:0;font-size:1.16rem;font-weight:800">Tracing One Clinical &amp; Treasury Multi-Agent Session Step by Step</h3>
+            <span class="badge danger" style="margin-bottom:6px">Session Walkthrough</span>
+            <h3 style="margin:0;font-size:1.16rem;font-weight:800">Example: Clinical &amp; Treasury Multi-Agent Session</h3>
           </div>
-          <span class="badge ok">Verified Live on Opus 5.5 &amp; GPT-4o-mini</span>
+          <span class="badge ok">Recorded on Opus 5.5 &amp; GPT-4o-mini</span>
         </div>
         <div class="worked-steps">
           <div class="worked-step">
-            <b style="color:#b01c30">Step 1 — Pre-Context PII Redaction &amp; Injection Quarantine (<code>3.59 ms</code>):</b><br>
-            Dr. Alice Chen submits a ticket containing <code>MRN-849201</code>, SSN <code>123-45-6789</code>, <code>sarah.connor@medcenter.org</code>, and leaked key <code>AKIAIOSFODNN7EXAMPLE</code>. Before the LLM ever sees a single byte, <code>pii_firewall.py</code> replaces all 4 entities with <code>&lt;PII:PATIENT_MRN_001&gt;</code> .. <code>&lt;PII:AWS_KEY_001&gt;</code> in an HMAC-keyed session vault (<code>360/360</code> benchmark recall).
+            <b style="color:#b01c30">Step 1: PII Redaction &amp; Injection Quarantine (<code>3.59 ms</code>)</b><br>
+            Dr. Alice Chen submits a ticket containing <code>MRN-849201</code>, SSN <code>123-45-6789</code>, <code>sarah.connor@medcenter.org</code>, and key <code>AKIAIOSFODNN7EXAMPLE</code>. Before the prompt leaves for the model, <code>pii_firewall.py</code> swaps all 4 values for <code>&lt;PII:PATIENT_MRN_001&gt;</code> through <code>&lt;PII:AWS_KEY_001&gt;</code> in an HMAC-keyed session vault (<code>360/360</code> benchmark recall).
           </div>
           <div class="worked-step">
-            <b style="color:#b01c30">Step 2 — 3-Tier Memory Retrieval (<code>352</code> vs <code>1,819</code> Raw Tokens):</b><br>
-            Even after 65 noisy telemetry turns, <code>ContextCore</code> retrieves <code>[sem-0001 | turn-0003]</code> (<code>SLA-9001</code>: <code>15 min</code> P1 RTO) and <code>[sem-0002 | turn-0026]</code> (<code>EU-GDPR</code>: <code>eu-central-1</code> residency) from Tier 3 Semantic Memory (<code>5.17×</code> compression, <code>100.0%</code> Recall@4 vs <code>0.0%</code> FIFO).
+            <b style="color:#b01c30">Step 2: 3-Tier Memory Retrieval (<code>352</code> vs. <code>1,819</code> Raw Tokens)</b><br>
+            After 65 telemetry turns, <code>ContextCore</code> retrieves <code>[sem-0001 | turn-0003]</code> (<code>SLA-9001</code>: <code>15 min</code> P1 RTO) and <code>[sem-0002 | turn-0026]</code> (<code>EU-GDPR</code>: <code>eu-central-1</code> residency) from Tier 3 Semantic Memory (<code>5.17×</code> compression, <code>100.0%</code> Recall@4 vs. <code>0.0%</code> FIFO).
           </div>
           <div class="worked-step">
-            <b style="color:#b01c30">Step 3 — Attenuated A2A Token &amp; Selective Re-Hydration (<code>1.25 ms</code>):</b><br>
-            <code>agent:connect-orchestrator-v2</code> mints a narrowed child HMAC-SHA256 token for <code>agent:ehr-clinical-subagent</code> allowing only <code>ehr:lookup_patient</code>. At tool execution, the proxy re-hydrates <code>MRN</code> and <code>SSN</code> for the EHR API while keeping <code>EMAIL</code> and <code>AWS_KEY</code> redacted!
+            <b style="color:#b01c30">Step 3: Narrowed Sub-Agent Token &amp; Selective Unmasking (<code>1.25 ms</code>)</b><br>
+            <code>agent:connect-orchestrator-v2</code> mints a narrowed child HMAC-SHA256 token for <code>agent:ehr-clinical-subagent</code> permitting only <code>ehr:lookup_patient</code>. At tool execution, the proxy restores <code>MRN</code> and <code>SSN</code> for the EHR API while keeping <code>EMAIL</code> and <code>AWS_KEY</code> redacted.
           </div>
           <div class="worked-step">
-            <b style="color:#b01c30">Step 4 — High-Risk JIT Suspension &amp; SHA-256 Audit Chain:</b><br>
-            When a treasury sub-agent proposes an <code>$18,500</code> <code>billing:WIRE_TRANSFER</code> (<code>&gt; $2,500</code> autonomous limit), execution suspends into <code>PENDING_JIT_APPROVAL</code> until human approver <code>user/sec-approver-bob</code> cryptographically signs off—appending a tamper-evident SHA-256 chain link (<code>37/37</code> verified).
+            <b style="color:#b01c30">Step 4: High-Risk Hold &amp; Hash-Chained Audit Log</b><br>
+            When a treasury sub-agent proposes an <code>$18,500</code> <code>billing:WIRE_TRANSFER</code> (above the <code>$2,500</code> autonomous cap), execution pauses in <code>PENDING_JIT_APPROVAL</code> until human approver <code>user/sec-approver-bob</code> signs off, appending a SHA-256 hash-chain link (<code>37/37</code> verified).
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- §02 · SYSTEM ARCHITECTURE -->
+  <!-- §02 · ARCHITECTURE -->
   <section class="sec" id="architecture">
     <div class="wrap">
-      <span class="sec-kicker">§02 · System Architecture</span>
+      <span class="sec-kicker">02 · Architecture</span>
       <div class="sec-head">
-        <h2>Zero-Trust Identity, PII Firewall, 3-Tier Memory &amp; Multi-Model Gateway Topology</h2>
-        <p>Serverless AWS CloudFront + private S3 (OAC) + Python 3.12 Lambda + Bedrock Nova architecture. <b>Click any component in the diagram below to inspect its plain-English role and technical implementation.</b></p>
+        <h2>Architecture</h2>
+        <p>Incoming prompts pass through the PII and prompt-injection firewall, 3-tier memory server, and capability token minter before reaching the model gateway or tool approval proxy. <b>Click any component in the diagram below to inspect its module and runtime contract.</b></p>
       </div>
 
       <div class="arch-toolbar">
@@ -626,73 +617,73 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
   <!-- §03 · IMPLEMENTATION -->
   <section class="sec" id="implementation">
     <div class="wrap">
-      <span class="sec-kicker">§03 · Implementation</span>
+      <span class="sec-kicker">03 · Implementation</span>
       <div class="sec-head">
-        <h2>Four Zero-Dependency Python Modules (<code>agent_guard/</code>)</h2>
-        <p>Each module pairs plain-English intuition with exact cryptographic token math, firewall tokenization, TF-IDF memory promotion, and Pareto gateway routing.</p>
+        <h2>Implementation</h2>
+        <p>Four standard-library Python modules in <code>agent_guard/</code> enforce capability token narrowing, session-vault PII tokenization, 3-tier memory promotion, and cached model routing.</p>
       </div>
 
       <div class="impl-grid">
         <div class="impl-card">
           <div class="impl-head">
-            <span>MODULE 01 · A2A CAPABILITY &amp; JIT PROXY</span>
+            <span>MODULE 01 · CAPABILITY TOKENS &amp; JIT PROXY</span>
             <span style="color:#fda4af">agent_guard/identity_delegation.py</span>
           </div>
           <div class="impl-body">
-            <h3 style="margin:0;font-size:1.08rem;font-weight:800">Monotonic HMAC-SHA256 Capability Attenuation &amp; JIT Hold</h3>
+            <h3 style="margin:0;font-size:1.08rem;font-weight:800">Monotonic HMAC-SHA256 Capability Attenuation &amp; Human Hold</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> Think of an A2A capability token like a hotel keycard handed to a sub-agent: the parent can restrict it to Room 402 for 10 minutes, and the sub-agent can never edit the card to unlock the penthouse or raise its spending cap.
+              Each sub-agent receives a signed token similar to a restricted hotel keycard: the parent agent can narrow access to specific tools, resource ARNs, and dollar caps for a short window, and a sub-agent cannot modify the card to broaden permissions.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (Crypto &amp; Glob Math):</b> Signs canonical JSON (<code>human_principal_id</code>, <code>agent_id</code>, <code>parent_agent_id</code>, <code>allowed_tool_globs</code>, <code>allowed_resource_arns</code>, <code>max_cost_usd</code>, <code>exp</code>) with <code>HMAC-SHA256</code>. Verifies strict subset attenuation (<code>23/23</code> escalation attacks blocked in <code>1.25 ms</code>), suspends <code>WIRE_TRANSFER</code> / <code>PROD_DEPLOY</code> / <code>IAM_MUTATE</code> / <code>DELETE</code> (<code>4/4</code> held), and verifies <code>37/37</code> SHA-256 audit links.
+              <b>Crypto &amp; Glob Subsumption:</b> Signs canonical JSON (<code>human_principal_id</code>, <code>agent_id</code>, <code>parent_agent_id</code>, <code>allowed_tool_globs</code>, <code>allowed_resource_arns</code>, <code>max_cost_usd</code>, <code>exp</code>) with <code>HMAC-SHA256</code>. Verifies strict subset attenuation (<code>23/23</code> escalation attacks blocked in <code>1.25 ms</code>), suspends <code>WIRE_TRANSFER</code>, <code>PROD_DEPLOY</code>, <code>IAM_MUTATE</code>, and <code>DELETE</code> (<code>4/4</code> held), and verifies <code>37/37</code> SHA-256 audit links.
             </div>
           </div>
         </div>
 
         <div class="impl-card">
           <div class="impl-head">
-            <span>MODULE 02 · REVERSIBLE PII &amp; INJECTION FIREWALL</span>
+            <span>MODULE 02 · PII &amp; INJECTION FIREWALL</span>
             <span style="color:#93c5fd">agent_guard/pii_firewall.py</span>
           </div>
           <div class="impl-body">
             <h3 style="margin:0;font-size:1.08rem;font-weight:800">Session-Vault Tokenization &amp; Adversarial Payload Quarantine</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> The LLM only needs to know *"send an SMS to <code>&lt;PII:PHONE_001&gt;</code>"*—it never needs the actual phone number! Only when the approved SMS tool is called does our proxy swap <code>&lt;PII:PHONE_001&gt;</code> back in, while keeping SSNs and credit cards locked away.
+              A language model only needs to reason over placeholders such as <code>&lt;PII:PHONE_001&gt;</code> rather than actual customer numbers. When an approved SMS tool runs, the proxy substitutes <code>&lt;PII:PHONE_001&gt;</code> back in while keeping SSNs and credit cards redacted.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (6-Class Vault + Fuzzer):</b> Redacts <code>SSN</code>, <code>AWS_ACCESS_KEY</code>, <code>CREDIT_CARD</code>, <code>EMAIL</code>, <code>PHONE</code>, and <code>PATIENT_MRN</code> (<code>360/360</code> entities = <code>100.0%</code> recall &amp; <code>100.0%</code> selective rehydration across <code>60</code> multi-entity cases) while quarantining ChatML delimiter spoofing, instruction overrides, and Base64 tool smuggling (<code>40/40</code> blocked, <code>0.0%</code> FPR on <code>20</code> benign controls in <code>3.59 ms</code>).
+              <b>6-Class Vault &amp; Fuzzer:</b> Redacts <code>SSN</code>, <code>AWS_ACCESS_KEY</code>, <code>CREDIT_CARD</code>, <code>EMAIL</code>, <code>PHONE</code>, and <code>PATIENT_MRN</code> (<code>360/360</code> entities = <code>100.0%</code> recall and <code>100.0%</code> selective re-hydration across <code>60</code> multi-entity cases) while quarantining ChatML delimiter spoofing, instruction overrides, and Base64 tool smuggling (<code>40/40</code> blocked, <code>0.0%</code> FPR on <code>20</code> benign controls in <code>3.59 ms</code>).
             </div>
           </div>
         </div>
 
         <div class="impl-card">
           <div class="impl-head">
-            <span>MODULE 03 · 3-TIER HIERARCHICAL MEMORY MCP</span>
+            <span>MODULE 03 · 3-TIER MEMORY SERVER</span>
             <span style="color:#fde68a">agent_guard/memory_mcp.py</span>
           </div>
           <div class="impl-body">
             <h3 style="margin:0;font-size:1.08rem;font-weight:800">Working Window + Episodic Decay + Semantic TF-IDF Promotion</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> Humans don't memorize 65 transcripts word-for-word; we keep the last few sentences in short-term memory, summarize recent chapters, and store permanent rules (like *"EU data stays in Frankfurt"*) in long-term memory with citations.
+              Instead of copying 65 full turns into every prompt, the memory server keeps recent turns in a small working window, summarizes older segments, and promotes permanent rules (such as data residency or dollar limits) into indexed semantic storage with turn citations.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (3-Tier Eviction Engine):</b> Enforces a <code>220</code>-token Tier 1 Working budget (<code>1</code> pinned guardrail + <code>6</code> recent turns), compacts <code>57</code> evicted turns into Tier 2 Episodic summaries with exponential recency decay, and promotes high-salience policy/SLA facts into Tier 3 Semantic Memory (<code>8</code> facts)—compressing <code>1,819</code> raw tokens to <code>352</code> (<code>5.17×</code>) with **<code>100.0%</code> Recall@4 vs <code>0.0%</code> FIFO**.
+              <b>3-Tier Eviction Engine:</b> Enforces a <code>220</code>-token Tier 1 Working budget (<code>1</code> pinned guardrail + <code>6</code> recent turns), compacts <code>57</code> evicted turns into Tier 2 Episodic summaries with exponential recency decay, and promotes high-salience policy and SLA facts into Tier 3 Semantic Memory (<code>8</code> facts), compressing <code>1,819</code> raw tokens to <code>352</code> (<code>5.17×</code>) with <b><code>100.0%</code> Recall@4 vs. <code>0.0%</code> FIFO</b>.
             </div>
           </div>
         </div>
 
         <div class="impl-card">
           <div class="impl-head">
-            <span>MODULE 04 · PARETO GATEWAY &amp; KILL-SWITCHES</span>
+            <span>MODULE 04 · MODEL GATEWAY &amp; KILL-SWITCHES</span>
             <span style="color:#ddd6fe">agent_guard/model_gateway.py · web_api.py</span>
           </div>
           <div class="impl-body">
             <h3 style="margin:0;font-size:1.08rem;font-weight:800">Tenant-Isolated Semantic Cache, Tier Router &amp; Loop Breaker</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> Repeated or paraphrased support questions get answered in <code>1.2 ms</code> from a tenant-isolated cache, simple lookups go to <code>nova-micro</code>, hard audits escalate to reasoning models, and stuck agents repeating the same tool 3 times get unplugged immediately.
+              Repeated or paraphrased support queries return in <code>1.2 ms</code> from a tenant-isolated cache, routine lookups route to <code>nova-micro</code>, complex multi-tool audits route to reasoning models, and agents that call the same tool with identical arguments three times in a row are halted.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (100-Request Pareto Suite):</b> Hits <code>84.0%</code> tenant-scoped Semantic Cache (<code>1.2 ms</code>, <code>$0.00</code>), routes <code>10</code> fast-tier and <code>8</code> reasoning-tier calls, cutting total spend from <code>$0.075018</code> to **<code>$0.007814</code> (<code>89.58%</code> saved)** and mean latency from <code>920.0 ms</code> to **<code>86.75 ms</code>**, plus canonical-args SHA-256 loop &amp; budget circuit breakers.
+              <b>100-Request Suite:</b> Hits <code>84.0%</code> tenant-scoped Semantic Cache (<code>1.2 ms</code>, <code>$0.00</code>), routes <code>10</code> fast-tier and <code>8</code> reasoning-tier calls, cutting total spend from <code>$0.075018</code> to <b><code>$0.007814</code> (<code>89.58%</code> saved)</b> and mean latency from <code>920.0 ms</code> to <b><code>86.75 ms</code></b>, paired with canonical-args SHA-256 loop and budget circuit breakers.
             </div>
           </div>
         </div>
@@ -700,13 +691,13 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
     </div>
   </section>
 
-  <!-- §04 · DESIGN TRADE-OFFS -->
+  <!-- §04 · TRADE-OFFS -->
   <section class="sec" id="design-tradeoffs">
     <div class="wrap">
-      <span class="sec-kicker">§04 · Design Trade-Offs</span>
+      <span class="sec-kicker">04 · Trade-Offs</span>
       <div class="sec-head">
-        <h2>Zero-Trust Agent Architecture vs. Prompt-Only Guardrails &amp; FIFO Context</h2>
-        <p>Why production multi-agent systems enforce cryptographic attenuation, pre-context redaction, and 3-tier memory outside the LLM prompt.</p>
+        <h2>Trade-Offs</h2>
+        <p>Comparing runtime capability tokens, pre-context PII vaulting, and 3-tier memory against prompt-only guardrails and sliding-window truncation.</p>
       </div>
 
       <div class="box" style="background:var(--card);border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--accent);margin-bottom:20px">
@@ -714,35 +705,35 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           <table class="brutal-table">
             <thead>
               <tr>
-                <th>Governance Dimension</th>
+                <th>Dimension</th>
                 <th>Shared API Keys + System-Prompt Rules</th>
-                <th>Post-Hoc Output Regex + FIFO Truncation</th>
-                <th>AgentGuard &amp; ContextCore (Zero-Trust Runtime)</th>
+                <th>Output-Only Regex + FIFO Truncation</th>
+                <th>AgentGuard (Runtime Proxy + 3-Tier Memory)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><b>A2A Sub-Agent Delegation</b></td>
-                <td>Full parent IAM role inherited; confused-deputy blast radius</td>
+                <td><b>Sub-Agent Delegation</b></td>
+                <td>Full parent IAM role inherited across handoffs</td>
                 <td>Static allowlists cannot track per-request USD cap or human caller</td>
-                <td class="winner-row"><b>HMAC-SHA256 monotonic attenuation (<code>23/23</code> escalations blocked) + <code>4/4</code> JIT human holds</b></td>
+                <td class="winner-row"><b>HMAC-SHA256 monotonic attenuation (<code>23/23</code> escalations blocked) + <code>4/4</code> human holds</b></td>
               </tr>
               <tr>
-                <td><b>Sensitive PII &amp; Secrets</b></td>
-                <td>Raw SSNs, MRNs &amp; AWS keys transmitted to external LLM context</td>
-                <td>Output-only scrubbing leaks raw PII into provider logs &amp; traces</td>
-                <td class="winner-row"><b>Pre-context <code>&lt;PII:...&gt;</code> vault (<code>360/360</code> scrubbed) + tool-scoped selective re-hydration (<code>100%</code>)</b></td>
+                <td><b>Customer PII &amp; Secrets</b></td>
+                <td>Raw SSNs, MRNs &amp; AWS keys sent into external model prompts</td>
+                <td>Output-only scrubbing still leaks raw PII into provider logs &amp; traces</td>
+                <td class="winner-row"><b>Pre-context <code>&lt;PII:...&gt;</code> vault (<code>360/360</code> scrubbed) + tool-scoped selective unmasking (<code>100%</code>)</b></td>
               </tr>
               <tr>
-                <td><b>Long-Horizon Memory (65 Turns)</b></td>
-                <td>Stuffing full history explodes latency &amp; cost (<code>1,819+</code> tokens)</td>
-                <td>Naive FIFO sliding window drops <code>8/8</code> early rules (<code>0.0%</code> recall)</td>
-                <td class="winner-row"><b>3-Tier Working/Episodic/Semantic MCP: <code>352</code> tokens (<code>5.17×</code>) at <code>100.0%</code> Needle Recall@4</b></td>
+                <td><b>Long Sessions (65 Turns)</b></td>
+                <td>Sending full history raises latency &amp; cost (<code>1,819+</code> tokens)</td>
+                <td>FIFO sliding window drops <code>8/8</code> early rules (<code>0.0%</code> recall)</td>
+                <td class="winner-row"><b>3-Tier Working/Episodic/Semantic memory: <code>352</code> tokens (<code>5.17×</code>) at <code>100.0%</code> Recall@4</b></td>
               </tr>
               <tr>
-                <td><b>Inference Cost &amp; Loop Safety</b></td>
-                <td>All calls hit reasoning tier (<code>$0.0750</code>, <code>920 ms</code>); infinite retry loops</td>
-                <td>Global cache risks cross-tenant leakage</td>
+                <td><b>Inference Cost &amp; Loops</b></td>
+                <td>Every call hits reasoning tier (<code>$0.0750</code>, <code>920 ms</code>); unbounded retries</td>
+                <td>Shared global cache risks cross-tenant data bleed</td>
                 <td class="winner-row"><b>Tenant-isolated cache (<code>84%</code>) + tier routing (<code>89.58%</code> cost saved, <code>86.8 ms</code>) + 3× loop breaker</b></td>
               </tr>
             </tbody>
@@ -752,36 +743,31 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 
       <div class="grid-3">
         <div class="pillar-card">
-          <span class="pillar-num">Trade-Off 01 · Pre-Context Vault</span>
-          <h3>Proxy State vs. Zero Context-Window PII</h3>
-          <p><b>Plain English:</b> Holding an in-memory session map per request adds tiny bookkeeping (<code>3.59 ms</code>), but guarantees raw SSNs and keys never reach model weights or logs—while permitted downstream APIs still receive exact arguments.</p>
+          <span class="pillar-num">Trade-Off 01 · Session PII Vault</span>
+          <h3>Per-Request Vault State vs. Zero PII in Prompts</h3>
+          <p>Maintaining an HMAC-keyed session map adds <code>3.59 ms</code> of proxy overhead per turn, in exchange for keeping raw SSNs, card numbers, and keys out of external model prompts while still passing exact values to authorized tools.</p>
         </div>
         <div class="pillar-card">
           <span class="pillar-num">Trade-Off 02 · 3-Tier Promotion</span>
-          <h3>Salience Indexing vs. Zero Context Amnesia</h3>
-          <p><b>Plain English:</b> Extracting durable facts on eviction avoids shipping the entire 65-turn chat on every prompt, cutting context tokens <code>5.17×</code> (<code>1,819 → 352</code>) while raising early-policy recall from <code>0.0%</code> to <code>100.0%</code>.</p>
+          <h3>Eviction Indexing vs. Constant Prompt Size</h3>
+          <p>Scoring and promoting policy statements on eviction avoids sending the full 65-turn transcript on every turn, compressing context <code>5.17×</code> (<code>1,819 → 352</code> tokens) while lifting early-rule recall from <code>0.0%</code> to <code>100.0%</code>.</p>
         </div>
         <div class="pillar-card">
-          <span class="pillar-num">Trade-Off 03 · JIT Human Hold</span>
-          <h3>Async Approval Pause vs. Zero Rogue Wires</h3>
-          <p><b>Plain English:</b> Routine read tools stay sub-second, while irreversible <code>WIRE_TRANSFER</code> and <code>PROD_DEPLOY</code> calls deterministically pause for human cryptographic approval (<code>4/4</code> enforced).</p>
+          <span class="pillar-num">Trade-Off 03 · High-Risk Hold</span>
+          <h3>Approval Pause vs. Preventing Unauthorized Writes</h3>
+          <p>Read-only lookups run without interruption, while high-impact <code>WIRE_TRANSFER</code>, <code>PROD_DEPLOY</code>, <code>IAM_MUTATE</code>, and <code>DELETE</code> calls pause in <code>PENDING_JIT_APPROVAL</code> for human sign-off (<code>4/4</code> enforced).</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- §05 · LIVE TRACE SCRUBBER -->
+  <!-- §05 · TRACE REPLAY -->
   <section class="sec" id="trace-player">
     <div class="wrap">
-      <span class="sec-kicker">§05 · Live Trace Scrubber</span>
+      <span class="sec-kicker">05 · Trace Replay</span>
       <div class="sec-head">
-        <h2>🎬 Live Agent Trace Replay Player (claude-opus-5-5 vs. gpt-4o-mini)</h2>
-        <p>Step hop-by-hop through real captured production traces executed against live <b>Anthropic <code>claude-opus-5-5</code></b> and <b>OpenAI <code>gpt-4o-mini</code></b> APIs (stored in <code>benchmarks/live_llm_traces.json</code>).</p>
-      </div>
-
-      <div class="sandbox-guide">
-        <b>🧭 How to Use This Scrubber (What to Click &amp; What Happens):</b>
-        Choose one of the <b>3 Captured Enterprise Traces</b> (Healthcare EHR, $18,500 Wire Transfer JIT Hold, or Prompt-Injection Quarantine), switch between <code>claude-opus-5-5</code>, <code>gpt-4o-mini</code>, or <b>Side-by-Side Comparison</b>, and click <b>Hop 01 → Hop 07</b> (or press <b>▶ Play</b>) to see raw PII get scrubbed before the model and selectively re-hydrated at the tool boundary.
+        <h2>Trace Replay</h2>
+        <p>Scrub hop-by-hop through three recorded traces run against <b>Anthropic <code>claude-opus-5-5</code></b> and <b>OpenAI <code>gpt-4o-mini</code></b> (<code>benchmarks/live_llm_traces.json</code>).</p>
       </div>
 
       <div class="player-shell">
@@ -867,28 +853,20 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
     </div>
   </section>
 
-  <!-- §06 · INTERACTIVE STUDIO -->
+  <!-- §06 · LIVE DEMO -->
   <section class="sec" id="sandboxes">
     <div class="wrap">
-      <span class="sec-kicker">§06 · Interactive Studio</span>
+      <span class="sec-kicker">06 · Live Demo</span>
       <div class="sec-head">
-        <h2>Interactive Live Governance &amp; Memory Sandboxes</h2>
-        <p>Test every security invariant, PII redaction rule, 3-tier memory eviction query, and gateway circuit breaker directly in your browser.</p>
-      </div>
-
-      <div class="sandbox-guide">
-        <b>🧭 How to Use These 4 Live Sandboxes (What to Click &amp; What Happens):</b>
-        <b>Tab 1:</b> Trigger A2A privilege escalation attacks (<code>Wildcard Broadening</code>, <code>Budget Escalation</code>, <code>Forged HMAC</code>), then click <i>"1. Invoke High-Risk Tool"</i> → <i>"2. Sign &amp; Approve JIT Request"</i> → <i>"Simulate Post-Hoc Log Tampering"</i>.
-        <b>Tab 2:</b> Edit raw clinical/financial text live, test selective tool re-hydration, or click <i>"Send Guarded Prompt"</i> to invoke live AWS Bedrock Nova (<code>/api/*</code>) using only sanitized <code>&lt;PII:...&gt;</code> placeholders.
-        <b>Tab 3:</b> Query any of the 8 planted enterprise needles across 65 turns and inject extra distractor turns.
-        <b>Tab 4:</b> Test Semantic Cache hits (<code>1.2 ms</code>), Reasoning escalations, and the <code>3×</code> Runaway Loop &amp; Cost Kill-Switches.
+        <h2>Live Demo</h2>
+        <p>Test capability token narrowing, human approval holds, PII redaction with live Amazon Bedrock completions, 65-turn memory eviction, and gateway kill-switches.</p>
       </div>
 
       <div class="tabs-bar" role="tablist" aria-label="Interactive Sandboxes">
-        <button class="btn primary" role="tab" aria-selected="true" data-tab="tab-jit">1. Zero-Trust A2A &amp; JIT Approval Playground</button>
-        <button class="btn" role="tab" aria-selected="false" data-tab="tab-pii">2. Pre-Context PII Proxy &amp; Injection Firewall</button>
-        <button class="btn" role="tab" aria-selected="false" data-tab="tab-mem">3. 3-Tier Memory Eviction Simulator (65 Turns)</button>
-        <button class="btn" role="tab" aria-selected="false" data-tab="tab-gw">4. Multi-Model Gateway &amp; Cost/Loop Simulator</button>
+        <button class="btn primary" role="tab" aria-selected="true" data-tab="tab-jit">1. Narrow Sub-Agent Access &amp; Approve Risky Actions</button>
+        <button class="btn" role="tab" aria-selected="false" data-tab="tab-pii">2. Scrub Customer PII &amp; Block Prompt Injections</button>
+        <button class="btn" role="tab" aria-selected="false" data-tab="tab-mem">3. Test Long-Term Rule Recall Over 65 Turns</button>
+        <button class="btn" role="tab" aria-selected="false" data-tab="tab-gw">4. Route Models, Cache Queries &amp; Trip Kill-Switches</button>
       </div>
 
       <!-- TAB 1: ZERO-TRUST A2A DELEGATION & JIT APPROVAL PLAYGROUND -->
@@ -1026,14 +1004,14 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
             </div>
 
             <div style="border-top:1px dashed var(--rule);padding-top:10px">
-              <label class="field-label">Optional: Live Guarded LLM Call (Sends ONLY Sanitized &lt;PII:...&gt; Text)</label>
-              <div style="display:grid;grid-template-columns:130px 1fr auto;gap:8px">
+              <label class="field-label">Optional: Live Guarded Model Call (Sends ONLY Sanitized &lt;PII:...&gt; Text)</label>
+              <div style="display:grid;grid-template-columns:160px 1fr auto;gap:8px">
                 <select id="liveLlmProvider">
-                  <option value="bedrock" selected>AWS Bedrock Nova (/api/*)</option>
+                  <option value="bedrock" selected>Amazon Bedrock (Live)</option>
                   <option value="gemini">Gemini 2.5 Flash</option>
                   <option value="openai">OpenAI GPT-4o-mini</option>
                 </select>
-                <input type="password" id="liveLlmApiKey" placeholder="Optional API Key (stays in browser memory)">
+                <input type="password" id="liveLlmApiKey" placeholder="Leave blank for Amazon Bedrock, or paste API key">
                 <button class="btn sm accent" type="button" onclick="invokeLiveGuardedLLM()">Send Guarded Prompt</button>
               </div>
               <div id="liveLlmOutput" class="mono-out" style="margin-top:8px;display:none"></div>
@@ -1205,14 +1183,10 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
   <!-- §07 · BENCHMARKS -->
   <section class="sec last" id="benchmarks">
     <div class="wrap">
-      <span class="sec-kicker">§07 · Benchmarks</span>
+      <span class="sec-kicker">07 · Benchmarks</span>
       <div class="sec-head">
-        <h2>Measured Benchmark Summary (<code>benchmarks/latest_results.json</code>)</h2>
-        <p>Reproducible metrics generated by running <code>python3 -m agent_guard.cli</code> across 120 firewall cases, 23 escalation vectors, 65 memory turns, and 100 gateway requests.</p>
-      </div>
-
-      <div class="plain-callout" style="margin-bottom:20px">
-        <b>💡 Plain-English Benchmark Takeaway:</b> Every security boundary (<code>23/23</code> A2A escalation blocks, <code>360/360</code> PII redactions, <code>40/40</code> prompt-injection blocks, <code>37/37</code> hash-chain links) achieved <b><code>100.0%</code> enforcement with <code>0.0%</code> false positives</b> in under <code>4 ms</code>, while hierarchical memory lifted long-horizon constraint recall from <code>0.0%</code> to <code>100.0%</code> (<code>5.17×</code> compression) and multi-model caching cut inference cost by <code>89.58%</code>.
+        <h2>Benchmarks</h2>
+        <p>Reproduced via <code>python3 -m agent_guard.cli</code> (<code>benchmarks/latest_results.json</code>) across 120 firewall cases, 23 escalation vectors, 65 memory turns, and 100 gateway requests.</p>
       </div>
 
       <div class="box" style="background:var(--card);border:1px solid var(--ink);box-shadow:8px 8px 0 var(--accent)">
@@ -1273,7 +1247,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 
 <footer class="foot wrap">
   <span><b>AgentGuard &amp; ContextCore</b> · Engineered by Ritwika Reddy Kancharla</span>
-  <span>Python 3.14 Standard Library · 20/20 Unit Tests Passing · <a href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">GitHub Repository ↗</a></span>
+  <span>backend Standard Library · 20/20 Unit Tests Passing · <a href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">GitHub Repository ↗</a></span>
 </footer>
 
 <script>
@@ -1955,7 +1929,7 @@ async function invokeLiveGuardedLLM() {
   outBox.style.display = 'block';
 
   if (provider === 'bedrock') {
-    outBox.textContent = 'Calling AWS CloudFront /api/firewall/inspect -> Amazon Bedrock (us.amazon.nova-lite-v1:0) with sanitized <PII:...> prompt...';
+    outBox.textContent = 'Sending PII-sanitized prompt to Amazon Bedrock...';
     try {
       const resp = await fetch('/api/firewall/inspect', {
         method: 'POST',
@@ -1965,12 +1939,12 @@ async function invokeLiveGuardedLLM() {
       if (resp.ok) {
         const d = await resp.json();
         const gate = d.gateway_llm_gate || {};
-        outBox.textContent = `[Live ${gate.engine || 'AWS Bedrock (us.amazon.nova-lite-v1:0)'} · ${gate.latency_ms || d.total_wall_ms || 0} ms · Verdict: ${d.overall_verdict}]\n` +
+        outBox.textContent = `[Amazon Bedrock · ${gate.latency_ms || d.total_wall_ms || 0} ms · Verdict: ${d.overall_verdict}]\n` +
           `${gate.display_response_text || gate.response_text || JSON.stringify(gate)}`;
         return;
       }
     } catch (err) {
-      outBox.textContent = `CloudFront /api/firewall/inspect error: ${err.message}`;
+      outBox.textContent = `API error: ${err.message}`;
       return;
     }
   }
@@ -1978,7 +1952,7 @@ async function invokeLiveGuardedLLM() {
   if (!apiKey) {
     outBox.textContent = `[Local Guarded Gateway Mode — No external API key provided]\n` +
       `• Outbound Prompt Verified: 0 raw PII secrets present (only <PII:...> placeholders).\n` +
-      `• Tip: Use the "🎬 Live Agent Trace Replay Player" above to inspect real captured claude-opus-5-5 and gpt-4o-mini traces, or paste a browser API key here.`;
+      `• Tip: Use the Trace Replay section above to inspect recorded claude-opus-5-5 and gpt-4o-mini traces, or paste a browser API key here.`;
     return;
   }
 
@@ -2244,8 +2218,8 @@ function selectArchNode(nodeId) {
       </div>
       <div style="font:500 11.5px var(--mono);color:var(--accent);margin-bottom:10px">Module / Resource: <code>${escAg(info.module)}</code></div>
       <div class="grid-2" style="gap:12px">
-        <div class="layer-plain"><b>Plain English:</b> ${escAg(info.plain)}</div>
-        <div class="layer-hood"><b>Under the Hood:</b> ${escAg(info.hood)}</div>
+        <div class="layer-plain"><b>Role:</b> ${escAg(info.plain)}</div>
+        <div class="layer-hood"><b>Implementation:</b> ${escAg(info.hood)}</div>
       </div>
     `;
   }
@@ -2345,7 +2319,7 @@ updateTocOnScroll();
 
 fetch('/api/health').then(r => r.ok ? r.json() : null).then(d => {
   const el = document.getElementById('cfGuardHealth');
-  if (d && el) el.textContent = `AWS CloudFront + Python ${d.python_version || '3.12'} + Bedrock (${d.bedrock_model || 'us.amazon.nova-lite-v1:0'}) Live`;
+  if (d && el) el.textContent = 'Live on AWS · Powered by Amazon Bedrock';
 }).catch(() => {});
 </script>
 </body>
