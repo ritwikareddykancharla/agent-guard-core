@@ -388,7 +388,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 
           <!-- PLANE 1: AWS EDGE DELIVERY -->
           <path d="M 22,18 Q 600,14 1196,19 Q 1201,94 1195,168 Q 610,172 24,167 Q 19,92 22,18 Z" fill="#FAFAFA" stroke="#71717A" stroke-width="1.6" stroke-dasharray="8 6"/>
-          <text x="36" y="40" class="ex-hand" font-size="21" font-weight="700" fill="#b01c30">① AWS Edge Delivery Plane (Serverless Static S3 + Python 3.12 Lambda · 0 EC2 / 0 RDS)</text>
+          <text x="36" y="40" class="ex-hand" font-size="21" font-weight="700" fill="#b01c30">① AWS Edge Delivery Plane (Serverless Static S3 + AWS Lambda · 0 EC2 / 0 RDS)</text>
 
           <g class="ex-node" data-arch-node="edge-browser" tabindex="0">
             <path d="M 38,56 Q 136,53 234,57 Q 238,98 233,140 Q 135,143 39,139 Q 35,97 38,56 Z" fill="#DBEAFE"/>
@@ -428,7 +428,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           <g class="ex-node" data-arch-node="edge-lambda" tabindex="0">
             <path d="M 640,102 Q 775,99 910,103 Q 913,130 909,156 Q 774,159 641,155 Q 637,129 640,102 Z" fill="#FFE8D6"/>
             <path class="ex-stroke-main" d="M 640,102 Q 775,99 910,103 Q 913,130 909,156 Q 774,159 641,155 Q 637,129 640,102 Z" fill="none" stroke="#18181B" stroke-width="2"/>
-            <text x="775" y="125" text-anchor="middle" class="ex-hand" font-size="20" font-weight="700" fill="#18181B">AWS Lambda (Python 3.12)</text>
+            <text x="775" y="125" text-anchor="middle" class="ex-hand" font-size="20" font-weight="700" fill="#18181B">AWS Lambda</text>
             <text x="775" y="144" text-anchor="middle" class="ex-mono" font-size="9.5" fill="#9A3412">agent_guard/web_api.py · /api/*</text>
           </g>
 
@@ -600,7 +600,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           <button type="button" class="arch-node-pill" data-arch-btn="edge-browser">1. User Browser</button>
           <button type="button" class="arch-node-pill" data-arch-btn="edge-cloudfront">2. CloudFront Edge</button>
           <button type="button" class="arch-node-pill" data-arch-btn="edge-s3">3. Private S3 (OAC)</button>
-          <button type="button" class="arch-node-pill" data-arch-btn="edge-lambda">4. Python 3.12 Lambda</button>
+          <button type="button" class="arch-node-pill" data-arch-btn="edge-lambda">4. AWS Lambda</button>
           <button type="button" class="arch-node-pill" data-arch-btn="pii-firewall">5. PII &amp; Injection Firewall</button>
           <button type="button" class="arch-node-pill" data-arch-btn="memory-mcp">6. 3-Tier Memory MCP</button>
           <button type="button" class="arch-node-pill" data-arch-btn="a2a-tokens">7. A2A Capability Minter</button>
@@ -620,7 +620,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
       <span class="sec-kicker">03 · Implementation</span>
       <div class="sec-head">
         <h2>Implementation</h2>
-        <p>Four standard-library Python modules in <code>agent_guard/</code> enforce capability token narrowing, session-vault PII tokenization, 3-tier memory promotion, and cached model routing.</p>
+        <p>Four backend modules in <code>agent_guard/</code> enforce capability token narrowing, session-vault PII tokenization, 3-tier memory promotion, and cached model routing.</p>
       </div>
 
       <div class="impl-grid">
@@ -1247,7 +1247,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 
 <footer class="foot wrap">
   <span><b>AgentGuard &amp; ContextCore</b> · Engineered by Ritwika Reddy Kancharla</span>
-  <span>backend Standard Library · 20/20 Unit Tests Passing · <a href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">GitHub Repository ↗</a></span>
+  <span>Deterministic Guardrails · 20/20 Unit Tests Passing · <a href="https://github.com/ritwikareddykancharla/agent-guard-core" target="_blank" rel="noopener">GitHub Repository ↗</a></span>
 </footer>
 
 <script>
@@ -2130,11 +2130,11 @@ const ARCH_NODE_DETAILS = {
   },
   'edge-lambda': {
     plane: 'Plane ① · AWS Edge Delivery',
-    title: 'AWS Lambda Python 3.12 Guarded Inference Router',
+    title: 'AWS Lambda Guarded Inference Router',
     module: 'agent_guard/web_api.py',
     plain: 'Executes pre-context PII scrubbing, capability verification, and live Amazon Bedrock Nova guarded completions on demand.',
-    hood: 'Serverless Python 3.12 runtime invoking Amazon Bedrock Converse API (us.amazon.nova-lite-v1:0) only on sanitized <PII:...> text.',
-    metric: 'Python 3.12 Serverless · 0 EC2 / 0 RDS'
+    hood: 'Serverless AWS Lambda runtime invoking Amazon Bedrock Converse API (us.amazon.nova-lite-v1:0) only on sanitized <PII:...> text.',
+    metric: 'AWS Lambda Serverless · 0 EC2 / 0 RDS'
   },
   'pii-firewall': {
     plane: 'Plane ② · Pre-Context Security & Memory',
