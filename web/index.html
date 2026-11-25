@@ -192,6 +192,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
   .stats div{border-left:0;border-top:1px dashed var(--rule);padding-left:0}
   .site nav{display:none}
 }
+.plain-callout code,.worked-step code,.layer-plain code,.layer-hood code,.sandbox-guide code{font:500 .88em var(--mono);padding:1px 5px;border-radius:2px}
 </style>
 </head>
 <body>
@@ -300,11 +301,11 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           Suppose a doctor or corporate treasurer asks an AI orchestrator to resolve a ticket, and that orchestrator delegates work to specialized sub-agents across 65 conversation turns. Without hard runtime boundaries, four bad things happen:
           <b>(1) Confused-Deputy Escalation:</b> a sub-agent inherits broad admin permissions or approves a $25,000 wire transfer on its own;
           <b>(2) Context-Window PII Leakage:</b> raw patient SSNs, credit cards, and AWS keys get sent straight to third-party LLM APIs alongside prompt-injection traps hidden inside logs;
-          <b>(3) Context Amnesia:</b> simple sliding-window truncation forgets a critical SLA or GDPR rule stated back in Turn 3 (`0.0%` FIFO recall); and
+          <b>(3) Context Amnesia:</b> simple sliding-window truncation forgets a critical SLA or GDPR rule stated back in Turn 3 (<code>0.0%</code> FIFO recall); and
           <b>(4) Runaway Spend:</b> sending every routine lookup to a slow reasoning model burns 10× your inference budget.
         </p>
         <p>
-          <b>AgentGuard &amp; ContextCore</b> wraps the entire lifecycle: cryptographic capability tokens narrow permissions at every Agent-to-Agent (A2A) hop (<b>`23/23` escalations blocked</b>) and pause risky tools for human sign-off; a reversible pre-context firewall swaps PII for `<PII:...>` tokens (<b>`360/360` redacted, `40/40` injections blocked, `0.0%` false positives</b>); a 3-tier memory MCP recalls early enterprise constraints at <b>`100.0%` Recall@4</b> (`5.17×` compression); and a semantic-cached multi-model gateway cuts cost by <b>`89.58%`</b> (`86.8 ms` vs `920.0 ms`).
+          <b>AgentGuard &amp; ContextCore</b> wraps the entire lifecycle: cryptographic capability tokens narrow permissions at every Agent-to-Agent (A2A) hop (<b><code>23/23</code> escalations blocked</b>) and pause risky tools for human sign-off; a reversible pre-context firewall swaps PII for <code>&lt;PII:...&gt;</code> tokens (<b><code>360/360</code> redacted, <code>40/40</code> injections blocked, <code>0.0%</code> false positives</b>); a 3-tier memory MCP recalls early enterprise constraints at <b><code>100.0%</code> Recall@4</b> (<code>5.17×</code> compression); and a semantic-cached multi-model gateway cuts cost by <b><code>89.58%</code></b> (<code>86.8 ms</code> vs <code>920.0 ms</code>).
         </p>
       </div>
 
@@ -322,12 +323,12 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
         <article class="pillar-card">
           <span class="pillar-num">Failure 03 · FIFO Amnesia</span>
           <h3>Sliding Windows Drop Early Enterprise Rules</h3>
-          <p>Under a tight 220-token working window across 65 turns, naive FIFO truncation loses <code>8/8</code> early SLA, GDPR residency, and KMS rotation constraints (`0.0%` recall).</p>
+          <p>Under a tight 220-token working window across 65 turns, naive FIFO truncation loses <code>8/8</code> early SLA, GDPR residency, and KMS rotation constraints (<code>0.0%</code> recall).</p>
         </article>
         <article class="pillar-card">
           <span class="pillar-num">Failure 04 · Cost &amp; Loops</span>
           <h3>Static Reasoning Spend &amp; Stuck Tool Loops</h3>
-          <p>Routing paraphrased or routine lookups to frontier reasoning models costs `$0.0750` per 100 requests at `920 ms` latency—and stuck agents burn quota repeating identical tool calls.</p>
+          <p>Routing paraphrased or routine lookups to frontier reasoning models costs <code>$0.0750</code> per 100 requests at <code>920 ms</code> latency—and stuck agents burn quota repeating identical tool calls.</p>
         </article>
       </div>
 
@@ -341,20 +342,20 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
         </div>
         <div class="worked-steps">
           <div class="worked-step">
-            <b style="color:#b01c30">Step 1 — Pre-Context PII Redaction &amp; Injection Quarantine (`3.59 ms`):</b><br>
-            Dr. Alice Chen submits a ticket containing `MRN-849201`, SSN `123-45-6789`, `sarah.connor@medcenter.org`, and leaked key `AKIAIOSFODNN7EXAMPLE`. Before the LLM ever sees a single byte, `pii_firewall.py` replaces all 4 entities with `<PII:PATIENT_MRN_001>` .. `<PII:AWS_KEY_001>` in an HMAC-keyed session vault (`360/360` benchmark recall).
+            <b style="color:#b01c30">Step 1 — Pre-Context PII Redaction &amp; Injection Quarantine (<code>3.59 ms</code>):</b><br>
+            Dr. Alice Chen submits a ticket containing <code>MRN-849201</code>, SSN <code>123-45-6789</code>, <code>sarah.connor@medcenter.org</code>, and leaked key <code>AKIAIOSFODNN7EXAMPLE</code>. Before the LLM ever sees a single byte, <code>pii_firewall.py</code> replaces all 4 entities with <code>&lt;PII:PATIENT_MRN_001&gt;</code> .. <code>&lt;PII:AWS_KEY_001&gt;</code> in an HMAC-keyed session vault (<code>360/360</code> benchmark recall).
           </div>
           <div class="worked-step">
-            <b style="color:#b01c30">Step 2 — 3-Tier Memory Retrieval (`352` vs `1,819` Raw Tokens):</b><br>
-            Even after 65 noisy telemetry turns, `ContextCore` retrieves `[sem-0001 | turn-0003]` (`SLA-9001`: `15 min` P1 RTO) and `[sem-0002 | turn-0026]` (`EU-GDPR`: `eu-central-1` residency) from Tier 3 Semantic Memory (`5.17×` compression, `100.0%` Recall@4 vs `0.0%` FIFO).
+            <b style="color:#b01c30">Step 2 — 3-Tier Memory Retrieval (<code>352</code> vs <code>1,819</code> Raw Tokens):</b><br>
+            Even after 65 noisy telemetry turns, <code>ContextCore</code> retrieves <code>[sem-0001 | turn-0003]</code> (<code>SLA-9001</code>: <code>15 min</code> P1 RTO) and <code>[sem-0002 | turn-0026]</code> (<code>EU-GDPR</code>: <code>eu-central-1</code> residency) from Tier 3 Semantic Memory (<code>5.17×</code> compression, <code>100.0%</code> Recall@4 vs <code>0.0%</code> FIFO).
           </div>
           <div class="worked-step">
-            <b style="color:#b01c30">Step 3 — Attenuated A2A Token &amp; Selective Re-Hydration (`1.25 ms`):</b><br>
-            `agent:connect-orchestrator-v2` mints a narrowed child HMAC-SHA256 token for `agent:ehr-clinical-subagent` allowing only `ehr:lookup_patient`. At tool execution, the proxy re-hydrates `MRN` and `SSN` for the EHR API while keeping `EMAIL` and `AWS_KEY` redacted!
+            <b style="color:#b01c30">Step 3 — Attenuated A2A Token &amp; Selective Re-Hydration (<code>1.25 ms</code>):</b><br>
+            <code>agent:connect-orchestrator-v2</code> mints a narrowed child HMAC-SHA256 token for <code>agent:ehr-clinical-subagent</code> allowing only <code>ehr:lookup_patient</code>. At tool execution, the proxy re-hydrates <code>MRN</code> and <code>SSN</code> for the EHR API while keeping <code>EMAIL</code> and <code>AWS_KEY</code> redacted!
           </div>
           <div class="worked-step">
             <b style="color:#b01c30">Step 4 — High-Risk JIT Suspension &amp; SHA-256 Audit Chain:</b><br>
-            When a treasury sub-agent proposes an `$18,500` `billing:WIRE_TRANSFER` (`> $2,500` autonomous limit), execution suspends into `PENDING_JIT_APPROVAL` until human approver `user/sec-approver-bob` cryptographically signs off—appending a tamper-evident SHA-256 chain link (`37/37` verified).
+            When a treasury sub-agent proposes an <code>$18,500</code> <code>billing:WIRE_TRANSFER</code> (<code>&gt; $2,500</code> autonomous limit), execution suspends into <code>PENDING_JIT_APPROVAL</code> until human approver <code>user/sec-approver-bob</code> cryptographically signs off—appending a tamper-evident SHA-256 chain link (<code>37/37</code> verified).
           </div>
         </div>
       </div>
@@ -643,7 +644,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
               <b>Plain-English Intuition:</b> Think of an A2A capability token like a hotel keycard handed to a sub-agent: the parent can restrict it to Room 402 for 10 minutes, and the sub-agent can never edit the card to unlock the penthouse or raise its spending cap.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (Crypto &amp; Glob Math):</b> Signs canonical JSON (`human_principal_id`, `agent_id`, `parent_agent_id`, `allowed_tool_globs`, `allowed_resource_arns`, `max_cost_usd`, `exp`) with `HMAC-SHA256`. Verifies strict subset attenuation (`23/23` escalation attacks blocked in `1.25 ms`), suspends `WIRE_TRANSFER` / `PROD_DEPLOY` / `IAM_MUTATE` / `DELETE` (`4/4` held), and verifies `37/37` SHA-256 audit links.
+              <b>Under the Hood (Crypto &amp; Glob Math):</b> Signs canonical JSON (<code>human_principal_id</code>, <code>agent_id</code>, <code>parent_agent_id</code>, <code>allowed_tool_globs</code>, <code>allowed_resource_arns</code>, <code>max_cost_usd</code>, <code>exp</code>) with <code>HMAC-SHA256</code>. Verifies strict subset attenuation (<code>23/23</code> escalation attacks blocked in <code>1.25 ms</code>), suspends <code>WIRE_TRANSFER</code> / <code>PROD_DEPLOY</code> / <code>IAM_MUTATE</code> / <code>DELETE</code> (<code>4/4</code> held), and verifies <code>37/37</code> SHA-256 audit links.
             </div>
           </div>
         </div>
@@ -656,10 +657,10 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           <div class="impl-body">
             <h3 style="margin:0;font-size:1.08rem;font-weight:800">Session-Vault Tokenization &amp; Adversarial Payload Quarantine</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> The LLM only needs to know *"send an SMS to `<PII:PHONE_001>`"*—it never needs the actual phone number! Only when the approved SMS tool is called does our proxy swap `<PII:PHONE_001>` back in, while keeping SSNs and credit cards locked away.
+              <b>Plain-English Intuition:</b> The LLM only needs to know *"send an SMS to <code>&lt;PII:PHONE_001&gt;</code>"*—it never needs the actual phone number! Only when the approved SMS tool is called does our proxy swap <code>&lt;PII:PHONE_001&gt;</code> back in, while keeping SSNs and credit cards locked away.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (6-Class Vault + Fuzzer):</b> Redacts `SSN`, `AWS_ACCESS_KEY`, `CREDIT_CARD`, `EMAIL`, `PHONE`, and `PATIENT_MRN` (`360/360` entities = `100.0%` recall &amp; `100.0%` selective rehydration across `60` multi-entity cases) while quarantining ChatML delimiter spoofing, instruction overrides, and Base64 tool smuggling (`40/40` blocked, `0.0%` FPR on `20` benign controls in `3.59 ms`).
+              <b>Under the Hood (6-Class Vault + Fuzzer):</b> Redacts <code>SSN</code>, <code>AWS_ACCESS_KEY</code>, <code>CREDIT_CARD</code>, <code>EMAIL</code>, <code>PHONE</code>, and <code>PATIENT_MRN</code> (<code>360/360</code> entities = <code>100.0%</code> recall &amp; <code>100.0%</code> selective rehydration across <code>60</code> multi-entity cases) while quarantining ChatML delimiter spoofing, instruction overrides, and Base64 tool smuggling (<code>40/40</code> blocked, <code>0.0%</code> FPR on <code>20</code> benign controls in <code>3.59 ms</code>).
             </div>
           </div>
         </div>
@@ -675,7 +676,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
               <b>Plain-English Intuition:</b> Humans don't memorize 65 transcripts word-for-word; we keep the last few sentences in short-term memory, summarize recent chapters, and store permanent rules (like *"EU data stays in Frankfurt"*) in long-term memory with citations.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (3-Tier Eviction Engine):</b> Enforces a `220`-token Tier 1 Working budget (`1` pinned guardrail + `6` recent turns), compacts `57` evicted turns into Tier 2 Episodic summaries with exponential recency decay, and promotes high-salience policy/SLA facts into Tier 3 Semantic Memory (`8` facts)—compressing `1,819` raw tokens to `352` (`5.17×`) with **`100.0%` Recall@4 vs `0.0%` FIFO**.
+              <b>Under the Hood (3-Tier Eviction Engine):</b> Enforces a <code>220</code>-token Tier 1 Working budget (<code>1</code> pinned guardrail + <code>6</code> recent turns), compacts <code>57</code> evicted turns into Tier 2 Episodic summaries with exponential recency decay, and promotes high-salience policy/SLA facts into Tier 3 Semantic Memory (<code>8</code> facts)—compressing <code>1,819</code> raw tokens to <code>352</code> (<code>5.17×</code>) with **<code>100.0%</code> Recall@4 vs <code>0.0%</code> FIFO**.
             </div>
           </div>
         </div>
@@ -688,10 +689,10 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
           <div class="impl-body">
             <h3 style="margin:0;font-size:1.08rem;font-weight:800">Tenant-Isolated Semantic Cache, Tier Router &amp; Loop Breaker</h3>
             <div class="layer-plain">
-              <b>Plain-English Intuition:</b> Repeated or paraphrased support questions get answered in `1.2 ms` from a tenant-isolated cache, simple lookups go to `nova-micro`, hard audits escalate to reasoning models, and stuck agents repeating the same tool 3 times get unplugged immediately.
+              <b>Plain-English Intuition:</b> Repeated or paraphrased support questions get answered in <code>1.2 ms</code> from a tenant-isolated cache, simple lookups go to <code>nova-micro</code>, hard audits escalate to reasoning models, and stuck agents repeating the same tool 3 times get unplugged immediately.
             </div>
             <div class="layer-hood">
-              <b>Under the Hood (100-Request Pareto Suite):</b> Hits `84.0%` tenant-scoped Semantic Cache (`1.2 ms`, `$0.00`), routes `10` fast-tier and `8` reasoning-tier calls, cutting total spend from `$0.075018` to **`$0.007814` (`89.58%` saved)** and mean latency from `920.0 ms` to **`86.75 ms`**, plus canonical-args SHA-256 loop &amp; budget circuit breakers.
+              <b>Under the Hood (100-Request Pareto Suite):</b> Hits <code>84.0%</code> tenant-scoped Semantic Cache (<code>1.2 ms</code>, <code>$0.00</code>), routes <code>10</code> fast-tier and <code>8</code> reasoning-tier calls, cutting total spend from <code>$0.075018</code> to **<code>$0.007814</code> (<code>89.58%</code> saved)** and mean latency from <code>920.0 ms</code> to **<code>86.75 ms</code>**, plus canonical-args SHA-256 loop &amp; budget circuit breakers.
             </div>
           </div>
         </div>
@@ -724,25 +725,25 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
                 <td><b>A2A Sub-Agent Delegation</b></td>
                 <td>Full parent IAM role inherited; confused-deputy blast radius</td>
                 <td>Static allowlists cannot track per-request USD cap or human caller</td>
-                <td class="winner-row"><b>HMAC-SHA256 monotonic attenuation (`23/23` escalations blocked) + `4/4` JIT human holds</b></td>
+                <td class="winner-row"><b>HMAC-SHA256 monotonic attenuation (<code>23/23</code> escalations blocked) + <code>4/4</code> JIT human holds</b></td>
               </tr>
               <tr>
                 <td><b>Sensitive PII &amp; Secrets</b></td>
                 <td>Raw SSNs, MRNs &amp; AWS keys transmitted to external LLM context</td>
                 <td>Output-only scrubbing leaks raw PII into provider logs &amp; traces</td>
-                <td class="winner-row"><b>Pre-context `<PII:...>` vault (`360/360` scrubbed) + tool-scoped selective re-hydration (`100%`)</b></td>
+                <td class="winner-row"><b>Pre-context <code>&lt;PII:...&gt;</code> vault (<code>360/360</code> scrubbed) + tool-scoped selective re-hydration (<code>100%</code>)</b></td>
               </tr>
               <tr>
                 <td><b>Long-Horizon Memory (65 Turns)</b></td>
-                <td>Stuffing full history explodes latency &amp; cost (`1,819+` tokens)</td>
-                <td>Naive FIFO sliding window drops `8/8` early rules (`0.0%` recall)</td>
-                <td class="winner-row"><b>3-Tier Working/Episodic/Semantic MCP: `352` tokens (`5.17×`) at `100.0%` Needle Recall@4</b></td>
+                <td>Stuffing full history explodes latency &amp; cost (<code>1,819+</code> tokens)</td>
+                <td>Naive FIFO sliding window drops <code>8/8</code> early rules (<code>0.0%</code> recall)</td>
+                <td class="winner-row"><b>3-Tier Working/Episodic/Semantic MCP: <code>352</code> tokens (<code>5.17×</code>) at <code>100.0%</code> Needle Recall@4</b></td>
               </tr>
               <tr>
                 <td><b>Inference Cost &amp; Loop Safety</b></td>
-                <td>All calls hit reasoning tier (`$0.0750`, `920 ms`); infinite retry loops</td>
+                <td>All calls hit reasoning tier (<code>$0.0750</code>, <code>920 ms</code>); infinite retry loops</td>
                 <td>Global cache risks cross-tenant leakage</td>
-                <td class="winner-row"><b>Tenant-isolated cache (`84%`) + tier routing (`89.58%` cost saved, `86.8 ms`) + 3× loop breaker</b></td>
+                <td class="winner-row"><b>Tenant-isolated cache (<code>84%</code>) + tier routing (<code>89.58%</code> cost saved, <code>86.8 ms</code>) + 3× loop breaker</b></td>
               </tr>
             </tbody>
           </table>
@@ -753,17 +754,17 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
         <div class="pillar-card">
           <span class="pillar-num">Trade-Off 01 · Pre-Context Vault</span>
           <h3>Proxy State vs. Zero Context-Window PII</h3>
-          <p><b>Plain English:</b> Holding an in-memory session map per request adds tiny bookkeeping (`3.59 ms`), but guarantees raw SSNs and keys never reach model weights or logs—while permitted downstream APIs still receive exact arguments.</p>
+          <p><b>Plain English:</b> Holding an in-memory session map per request adds tiny bookkeeping (<code>3.59 ms</code>), but guarantees raw SSNs and keys never reach model weights or logs—while permitted downstream APIs still receive exact arguments.</p>
         </div>
         <div class="pillar-card">
           <span class="pillar-num">Trade-Off 02 · 3-Tier Promotion</span>
           <h3>Salience Indexing vs. Zero Context Amnesia</h3>
-          <p><b>Plain English:</b> Extracting durable facts on eviction avoids shipping the entire 65-turn chat on every prompt, cutting context tokens `5.17×` (`1,819 → 352`) while raising early-policy recall from `0.0%` to `100.0%`.</p>
+          <p><b>Plain English:</b> Extracting durable facts on eviction avoids shipping the entire 65-turn chat on every prompt, cutting context tokens <code>5.17×</code> (<code>1,819 → 352</code>) while raising early-policy recall from <code>0.0%</code> to <code>100.0%</code>.</p>
         </div>
         <div class="pillar-card">
           <span class="pillar-num">Trade-Off 03 · JIT Human Hold</span>
           <h3>Async Approval Pause vs. Zero Rogue Wires</h3>
-          <p><b>Plain English:</b> Routine read tools stay sub-second, while irreversible `WIRE_TRANSFER` and `PROD_DEPLOY` calls deterministically pause for human cryptographic approval (`4/4` enforced).</p>
+          <p><b>Plain English:</b> Routine read tools stay sub-second, while irreversible <code>WIRE_TRANSFER</code> and <code>PROD_DEPLOY</code> calls deterministically pause for human cryptographic approval (<code>4/4</code> enforced).</p>
         </div>
       </div>
     </div>
@@ -877,10 +878,10 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
 
       <div class="sandbox-guide">
         <b>🧭 How to Use These 4 Live Sandboxes (What to Click &amp; What Happens):</b>
-        <b>Tab 1:</b> Trigger A2A privilege escalation attacks (`Wildcard Broadening`, `Budget Escalation`, `Forged HMAC`), then click <i>"1. Invoke High-Risk Tool"</i> → <i>"2. Sign &amp; Approve JIT Request"</i> → <i>"Simulate Post-Hoc Log Tampering"</i>.
-        <b>Tab 2:</b> Edit raw clinical/financial text live, test selective tool re-hydration, or click <i>"Send Guarded Prompt"</i> to invoke live AWS Bedrock Nova (`/api/*`) using only sanitized `&lt;PII:...&gt;` placeholders.
+        <b>Tab 1:</b> Trigger A2A privilege escalation attacks (<code>Wildcard Broadening</code>, <code>Budget Escalation</code>, <code>Forged HMAC</code>), then click <i>"1. Invoke High-Risk Tool"</i> → <i>"2. Sign &amp; Approve JIT Request"</i> → <i>"Simulate Post-Hoc Log Tampering"</i>.
+        <b>Tab 2:</b> Edit raw clinical/financial text live, test selective tool re-hydration, or click <i>"Send Guarded Prompt"</i> to invoke live AWS Bedrock Nova (<code>/api/*</code>) using only sanitized <code>&lt;PII:...&gt;</code> placeholders.
         <b>Tab 3:</b> Query any of the 8 planted enterprise needles across 65 turns and inject extra distractor turns.
-        <b>Tab 4:</b> Test Semantic Cache hits (`1.2 ms`), Reasoning escalations, and the `3×` Runaway Loop &amp; Cost Kill-Switches.
+        <b>Tab 4:</b> Test Semantic Cache hits (<code>1.2 ms</code>), Reasoning escalations, and the <code>3×</code> Runaway Loop &amp; Cost Kill-Switches.
       </div>
 
       <div class="tabs-bar" role="tablist" aria-label="Interactive Sandboxes">
@@ -1211,7 +1212,7 @@ footer.foot{padding:36px 0 56px;border-top:1px solid var(--rule);font:400 12px v
       </div>
 
       <div class="plain-callout" style="margin-bottom:20px">
-        <b>💡 Plain-English Benchmark Takeaway:</b> Every security boundary (`23/23` A2A escalation blocks, `360/360` PII redactions, `40/40` prompt-injection blocks, `37/37` hash-chain links) achieved <b>`100.0%` enforcement with `0.0%` false positives</b> in under `4 ms`, while hierarchical memory lifted long-horizon constraint recall from `0.0%` to `100.0%` (`5.17×` compression) and multi-model caching cut inference cost by `89.58%`.
+        <b>💡 Plain-English Benchmark Takeaway:</b> Every security boundary (<code>23/23</code> A2A escalation blocks, <code>360/360</code> PII redactions, <code>40/40</code> prompt-injection blocks, <code>37/37</code> hash-chain links) achieved <b><code>100.0%</code> enforcement with <code>0.0%</code> false positives</b> in under <code>4 ms</code>, while hierarchical memory lifted long-horizon constraint recall from <code>0.0%</code> to <code>100.0%</code> (<code>5.17×</code> compression) and multi-model caching cut inference cost by <code>89.58%</code>.
       </div>
 
       <div class="box" style="background:var(--card);border:1px solid var(--ink);box-shadow:8px 8px 0 var(--accent)">
